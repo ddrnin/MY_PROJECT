@@ -1,0 +1,196 @@
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	}
+}
+.animaition{
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+	transition: 1s ease-out;
+	svg{
+		width: 110px;
+		height: 110px;
+	}
+	.moving{
+		stroke-dasharray: 400;
+		stroke-dashoffset: 400;
+		animation: ani1 2s  linear alternate-reverse;
+	}
+	@include keyframes(ani1){
+		0%   {stroke-dashoffset: 400;}
+		50% {stroke-dashoffset: 0;}
+		100% {stroke-dashoffset: -400;}
+	}
+	.ani01{
+		width: 100px; height: 100px;
+		x: 5px; y: 5px;
+		fill: none;
+		stroke: #880E41;
+		stroke-width: 5px;
+	}
+	&.off{
+		top: 0;
+		left: 0;
+		transform: unset;
+		svg{
+			width: 40px;
+			height: 40px;
+		}
+		.moving{
+			stroke-dasharray: 130;
+			stroke-dashoffset: 130;
+			animation: ani2 3s infinite linear alternate-reverse;
+		}
+		.ani01{
+			width: 30px; height: 30px;
+			x: 5px; y: 5px;
+			fill: none;
+			stroke: #880E41;
+			stroke-width: 5px;
+		}
+		@include keyframes(ani2){
+			0%   {stroke-dashoffset: 130;}
+			50% {stroke-dashoffset: 0;}
+			100% {stroke-dashoffset: -130;}
+		}
+	}
+}
+.animaition_bg{
+	width: 100vw;
+	height: 100vh;
+	background: black;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 990;
+	&.off{
+		display: none;
+	}
+}
+.main {
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	.mySwiper{
+		width:100%;
+		height: 100%;
+		.swiper-slide{
+			height: 100%;
+			overflow: hidden;
+			backface-visibility: hidden;
+			-webkit-backface-visibility:hidden;
+			.bg_img{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100vh;
+				z-index: -1;
+				font-size: 200px;
+				font-weight: bold;
+				color: red;
+				background:center no-repeat;background-size:cover
+			}
+		}
+	}
+	.navigation{
+		position: absolute;
+		top: 90%;
+		left: 0;
+		z-index: 2;
+		width: 100%;
+		.loading_bar{
+			position: relative;
+			margin: 0 auto;
+			width: calc(100% - 64px);
+			height: 1px;
+			overflow: hidden;
+			background: rgba($color: #fff, $alpha: 0.2);
+			&::after{
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -13.5%;
+				width: 13.5%;
+				height: 100%;
+				background: #fff;
+				@include keyframes(loading_bar){
+					0%{
+						left: -13.5%;
+					}
+					100%{
+						left: 100%;
+					}
+				}
+			}
+			&.on{
+				&::after{
+					animation: loading_bar 3.2s linear;
+				}
+			}
+		}
+		.arrow-btn{
+			width: 60px;
+			height: 40px;
+			position: absolute;
+			top: 2px;
+			transition: all 0.3s;
+			cursor: pointer;
+			&::after{
+				display: none;
+			}
+			i{
+				position: absolute;
+				top: 50%;
+				width: 100%;
+				height: 1px;
+				background: #fff;
+				&::after{
+					content: '';
+					position: absolute;
+					top: 0;
+					width: 50%;
+					height: 1px;
+					background: #fff;
+				}
+			}
+			&.swiper-button-next{
+				right: 32px;
+				i{
+					&::after{
+						right: 0;
+						transform-origin: right;
+						transform: rotate(35deg);
+					}
+				}
+				&:hover{
+					right: 26px;
+				}
+			}
+			&.swiper-button-prev{
+				left: 32px;
+				i{
+					&::after{
+						left: 0;
+						transform-origin: left;
+						transform: rotate(35deg);
+					}
+				}
+				&:hover{
+					left: 26px;
+				}
+			}
+		}
+	}
+}

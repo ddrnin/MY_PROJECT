@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no , viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="view-transition" content="same-origin">
+    <title>ddrnin | 부루마블</title>
+
+    <!-- Social Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="@@title ddrnin">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="">
+
+    <!-- css -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- js -->
+    <script src="/assets/js/plugin/jquery-3.7.0.min.js"></script><!-- jQuery 3.7.0 -->
+    <script src="/assets/js/ui.common.min.js"></script><!-- 퍼블리싱용 js -->
+</head>
+
+<body>
+    <header>
+        <div class="header_wrap">
+
+            <h1 class="header_title">부루마블</h1>
+
+            <!-- 헤더 인클루드 -->
+        </div>
+    </header>
+    <div class="bluemarble">
+        <!-- 부루마블 판 -->
+        <ul class="box_wrap before">
+            <li class="box">
+                서울
+                <span class="player">
+                    <img src="../../../assets/img/bluemarble/player.png" alt="">
+                </span>
+            </li>
+            <li class="box">뉴욕</li>
+            <li class="box">도쿄</li>
+            <li class="box">런던</li>
+            <li class="box">파리</li>
+            <li class="box">베를린</li>
+            <li class="box">시드니</li>
+            <li class="box">방콕</li>
+            <li class="box">타이페이</li>
+            <li class="box">상하이</li>
+            <li class="box">스톡홀름</li>
+            <li class="box">마드리드</li>
+        </ul>
+
+        <!-- 가운데 버튼, 카운트 -->
+        <div class="btn_wrap">
+            <button class="dice_btn">눌러요</button>
+            <p><span class="count">0</span>회 완주</p>
+        </div>
+        <!-- 주사위 팝업 -->
+        <div class="dice_pop alret_pop">
+            <div class="img_wrap">
+                <img src="../../../assets/img/bluemarble/dice_1.png" alt="">
+            </div>
+            <button class="btn_close">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <!-- 도시 구매 팝업 -->
+        <div class="city_pop alret_pop">
+            <ul>
+                <li>
+                    <button class="btn_apt btn_tower">아파트</button>
+                </li>
+                <li>
+                    <button class="btn_vill btn_tower">빌라</button>
+                </li>
+                <li>
+                    <button class="btn_oneroom btn_tower">원룸</button>
+                </li>
+                <li>
+                    <button class="btn_pass btn_tower">통과</button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 캐릭터 선택 -->
+        <!-- <div class="select_pop alret_pop">
+            <button class="btn_close">
+                <span></span>
+                <span></span>
+            </button>
+        </div> -->
+    </div>
+</body>
+<script>
+    var boxLength = $(".box").length;
+
+    $('.dice_btn').click(function() {
+        // length는 앞에 클래스를 가진 요소의 갯수 반환
+        // &&은 앞이 참이면 뒤를 실행(.box_wrap에 .before를 가진게 하나라도 있으면 참)
+        $('.box_wrap.after').length && $('.select_pop').addClass('on');
+        $('.box_wrap.before').length && (
+            $('.btn_wrap').addClass('off'),
+            $('.dice_pop').addClass('on'), game()
+
+        )
+    })
+    $('.btn_close').click(function() {
+        $('.alret_pop').removeClass('on')
+        playerMove()
+    })
+
+    var randomNumber;
+    var completedCount = 0;
+
+    function game() {
+        randomNumber = Math.floor(Math.random() * 6 + 1);
+        var resultimg = $('.dice_pop img');
+        resultimg.attr("src", "../../../assets/img/bluemarble/dice_" + randomNumber + ".png");
+
+        return randomNumber;
+    }
+
+    function playerMove() {
+        var player = $('.player');
+        var currentIndex = player.parent().index();
+        var newIndex = (currentIndex + randomNumber) % boxLength;
+
+        // 처음은 0칸 이동했으니까 / setInterval로 1칸 이동할 때마다 1씩 증가
+        var currentStep = 0;
+
+        // 이동 애니메이션 시작
+        var interval = setInterval(() => {
+            if (currentStep < randomNumber) {
+                // 다음 위치 = 현재 위치 + 이동한 칸 수 + 1 (1하는 이유 = 처음 시작부터 다음 위치로 가기 위해서)
+                var nextIndex = (currentIndex + currentStep + 1) % boxLength;
+                var nextStepBox = (".box:eq(" + nextIndex + ")");
+
+                player.appendTo(nextStepBox);
+                currentStep++;
+
+                // 목표 위치에 도달 시 완주 횟수 증가
+                // if (currentStep == randomNumber) {
+
+                // 다음 위치가 0이 되면 완주 횟수 증가
+                if (nextIndex == 0) {
+                    // 새로운 위치가 현재 위치보다 작으면
+                    if (newIndex < currentIndex) {
+                        completedCount++;
+                    }
+                    $('.count').text(completedCount);
+                }
+            } else {
+                // 시티팝업 온
+                setTimeout(function() {
+                    $('.city_pop').addClass('on'), city();
+                }, 100)
+                // 이동한 횟수와 주사위 수가 같아지면 멈춤
+                clearInterval(interval);
+                $('.btn_wrap').removeClass('off');
+            }
+        }, 250);
+    }
+
+    function city() {
+        // cityIndex는 플레이어가 있는 .box
+        var cityIndex = $('.player').parent().index();
+        // cityMark는 플레이어가 있는 .box를 객체로 지정
+        var cityMark = $(".box").eq(cityIndex);
+        $('.btn_apt').click(() => {
+            cityMark.addClass('apt');
+        })
+        $('.btn_vill').click(() => {
+            cityMark.addClass('vill');
+        })
+        $('.btn_oneroom').click(() => {
+            cityMark.addClass('oneroom');
+        })
+        $('.btn_pass').click(() => {})
+        $('.btn_tower').click(() => {
+            // 팝업이 꺼지게하고
+            $('.city_pop').removeClass('on');
+            // cityMark에 .tower를 추가하고
+            cityMark.addClass('tower');
+            // 모든 박스에 타워를 지으면
+            if ($('.box').length === $('.box.tower').length) {
+                $('body').addClass('pull');
+            }
+            // cityMark를 초기화 시켜 기존 cityMark에도 건물이 세워지는 것을 방지
+            cityMark = $();
+        })
+    }
+</script>
+
+</html>

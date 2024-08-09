@@ -1,0 +1,78 @@
+.layout{
+}
+.univ_begin{
+	.univ_title{
+	}
+	.input_area{
+		.form_wrap {
+			.input_set{
+				&.on{
+					.form_txt{
+						input[type='text']{
+							border-radius:5px 5px 0 0;
+						}
+					}
+					.list{
+						display: block;
+					}
+				}
+				.form_txt{
+					input[type='text']{
+						&::placeholder{
+						}
+					}
+				}
+				button{
+				}
+				.list{
+					display:none; 
+					position:absolute; 
+					top:calc(100% - 1px); 
+					left:0; 
+					width:calc(100% - 57px); 
+					max-height:159px;  
+					border:1px solid #acacac; 
+					border-radius:0 0 5px 5px; 
+					overflow-y:scroll; 
+					background:#fff; 
+					z-index:1;
+					li{
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						margin:0 8px;
+						height: 39px;
+						border-bottom: 1px dashed #ccc;
+						&:last-child{
+							border-bottom: unset;
+						}
+						p{
+							flex:1;
+							font-size: 14px;
+							text-align:left; 
+							white-space:normal;
+						}
+						button{
+							font-size: 13px;
+							border-radius: 5px;
+							width:34px; 
+							height:24px; 
+							color:#fff; 
+							background:#464646;
+						}
+					}
+				}
+			}
+			.search_msg{
+				> p{
+				}
+			}
+			.btn_nodata{
+			}
+			.btn_comp{
+			}
+			.notice_txt{
+			}
+		}
+	}
+}

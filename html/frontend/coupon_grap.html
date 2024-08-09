@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no , viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="view-transition" content="same-origin">
+    <title>ddrnin | 쿠폰 감소 게이지</title>
+
+    <!-- Social Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="@@title ddrnin">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="">
+
+    <!-- css -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- js -->
+    <script src="/assets/js/plugin/jquery-3.7.0.min.js"></script><!-- jQuery 3.7.0 -->
+    <script src="/assets/js/ui.common.min.js"></script><!-- 퍼블리싱용 js -->
+</head>
+
+<body>
+    <header>
+        <div class="header_wrap">
+
+            <h1 class="header_title">쿠폰 감소 게이지</h1>
+
+            <!-- 헤더 인클루드 -->
+        </div>
+    </header>
+    <img src="../../../assets/img/coupon_grap/poketbell_visual.jpg" alt="">
+    <div class="coupon_grap">
+        <div class="coupon_wrap coupon_wrap01">
+            <div class="blind">1번</div>
+            <div class="center_img center_img01">
+                <img src="../../../assets/img/coupon_grap/poketbell_box01_on.jpg" alt="">
+            </div>
+            <div class="center_img center_img02">
+                <img src="../../../assets/img/coupon_grap/poketbell_box01_off.jpg" alt="">
+            </div>
+            <div class="grap_area get">
+                <div class="grap">
+                    <div class="grap_inside"></div>
+                </div>
+                <div class="count_box">
+                    <span class="count">2,000</span>/2,000
+                </div>
+                <button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
+                <button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+    <div class="coupon_grap">
+        <div class="coupon_wrap coupon_wrap02">
+            <div class="blind">2번</div>
+            <div class="center_img center_img01">
+                <img src="../../../assets/img/coupon_grap/poketbell_box_on.jpg" alt="">
+            </div>
+            <div class="center_img center_img02">
+                <img src="../../../assets/img/coupon_grap/poketbell_box_off.jpg" alt="">
+            </div>
+            <div class="grap_area get">
+                <div class="grap">
+                    <div class="grap_inside">
+                    </div>
+                </div>
+                <div class="count_box">
+                    <span class="count">1,000</span>/1,000
+                </div>
+                <button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
+                <button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+    <div class="coupon_grap">
+        <div class="coupon_wrap coupon_wrap03">
+            <div class="blind">하이볼</div>
+            <div class="center_img center_img01">
+                <img src="../../../assets/img/coupon_grap/poketbell_box_on.jpg" alt="">
+            </div>
+            <div class="center_img center_img02">
+                <img src="../../../assets/img/coupon_grap/poketbell_box_off.jpg" alt="">
+            </div>
+            <div class="grap_area get">
+                <div class="grap">
+                    <div class="grap_inside">
+                    </div>
+                </div>
+                <div class="count_box">
+                    <span class="count">1,500</span>/1,500
+                </div>
+                <button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
+                <button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+    <div class="coupon_grap">
+        <div class="coupon_wrap coupon_wrap04">
+            <div class="blind">냉장디저트</div>
+            <div class="center_img center_img01">
+                <img src="../../../assets/img/coupon_grap/poketbell_box_on.jpg" alt="">
+            </div>
+            <div class="center_img center_img02">
+                <img src="../../../assets/img/coupon_grap/poketbell_box_off.jpg" alt="">
+            </div>
+            <div class="grap_area get">
+                <div class="grap">
+                    <div class="grap_inside">
+                    </div>
+                </div>
+                <div class="count_box">
+                    <span class="count">10</span>/10
+                </div>
+                <button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
+                <button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
+            </div>
+        </div>
+    </div>
+    <img src="../../../assets/img/coupon_grap/poketbell_visual_bottom.jpg" alt="">
+
+    <!-- 팝업 부분 -->
+    <div class="pop coupon_pop_up01">
+        <div class="pop_up_wrap">
+            <h2><span id="selectedCoupon"></span> 쿠폰이 발급 되었습니다.</h2>
+            <button class="btn_close">확인</button>
+        </div>
+    </div>
+    <div class="pop coupon_pop_up02">
+        <div class="pop_up_wrap">
+            <h2>쿠폰이 모두 소진되었습니다.</h2>
+            <button class="btn_close">확인</button>
+        </div>
+    </div>
+    <!--// 팝업 부분 -->
+</body>
+<script>
+    $(document).ready(function() {
+
+        // progressBar 변수 초기값 지정
+        var decreaseAmount = [0.05, 0.1, 0.066667, 10];
+        var width = new Array(4).fill(100);
+
+        $(document).on("click", ".btn_coupon", function() {
+            // count 감소 부분
+            var clickedBtn = $(this);
+            count(clickedBtn);
+
+            function count(clickedBtn) {
+                // 클릭된 버튼의 .count에서 현재값 가져오기
+                var couponWrap = clickedBtn.closest('.coupon_wrap');
+                var countElement = couponWrap.find('.count'); // countElement는 .count를 저장한 변수
+                var currentText = countElement.text(); // currentText는 .count의 text값을 저장한 변수 / .count의 text를 숫자로 변환하기 위해 사용
+                // .get 유무 확인
+                var couponGet = couponWrap.find('.grap_area');
+                // 쿠폰 이름 지정
+                var couponName = couponWrap.find('.blind').text();
+
+                // .count의 text를 쉼표 제거 후 숫자로 변환 -> 숫자로 변환해야 계산 가능 
+                var currentCount = parseInt(currentText.replace(/,/g, '')); // currentCount는 출력되는 숫자 
+                // 현재 카운트가 1 이상일 때만 감소
+                if (currentCount >= 1) {
+                    // .grap_area .get 유무 확인
+                    if (couponGet.hasClass('get')) {
+                        currentCount--;
+                        // .count 요소에 업데이트
+                        countElement.text(currentCount.toLocaleString()); // 다시 쉼표를 포함한 문자열로 변환하여 출력
+                        // 쿠폰 성공 팝업 오픈
+                        $('.coupon_pop_up01').slideDown(500);
+                        // 쿠폰 이름 삽입
+                        $('.coupon_pop_up01 #selectedCoupon').text(couponName);
+                        $('body').addClass('fixed');
+                    } else {
+                        // .get 없을 시 쿠폰 소진 팝업 오픈
+                        $('.coupon_pop_up02').slideDown(500);
+                        $('body').addClass('fixed');
+                    }
+                    // 숫자 0되면서 딤드 처리, 버튼 교체
+                    if (currentCount == 0) {
+                        couponWrap.addClass('off');
+                    }
+                }
+            }
+
+            // progressBar 감소 부분
+
+            // 각 항목에 맞는 grapInside 선택 + 그에 맞는 index값 지정 / .grap_area에 .get 유무 확인
+            // progressBar($(this).closest('.coupon_wrap01').find('.grap_area.get .grap_inside'), 0);
+            // progressBar($(this).closest('.coupon_wrap02').find('.grap_area.get .grap_inside'), 1);
+            // progressBar($(this).closest('.coupon_wrap03').find('.grap_area.get .grap_inside'), 2);
+            // progressBar($(this).closest('.coupon_wrap04').find('.grap_area.get .grap_inside'), 3);
+            // 각 항목에 맞는 grapInside 선택 + 그에 맞는 index값 지정 / .grap_area에 .get 유무 확인
+            for (var i = 1; i <= 4; i++) {
+                progressBar($(this).closest(`.coupon_wrap0${i}`).find('.grap_area.get .grap_inside'), i - 1)
+            }
+
+            function progressBar(grapInside, index) {
+                $(grapInside).each(function() {
+                    // 새 너비 = 현재 너비(초기값 100%) - 감소량(index별로 다름)
+                    var newWidth = width[index] - decreaseAmount[index];
+                    // 너비가 0밑으로 내려가지않게
+                    if (newWidth < 0) {
+                        newWidth = 0;
+                    }
+                    // 새로운 너비 적용
+                    $(this).css('width', newWidth + '%');
+
+                    // 감소한 너비, 감소량 적용(다음 클릭을 위해)
+                    return width[index] = newWidth
+                })
+            }
+        });
+        // 쿠폰 성공 팝업 클로즈
+        $('.btn_close').click(() => {
+            $('.pop').slideUp(400);
+            setTimeout(() => {
+                $('body').removeClass('fixed');
+            }, 400);
+        })
+    });
+</script>
+
+</html>

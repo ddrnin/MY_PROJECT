@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no , viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="view-transition" content="same-origin">
+    <title>ddrnin | 개강파티할'과'</title>
+
+    <!-- Social Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="@@title ddrnin">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="">
+
+    <!-- css -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- js -->
+    <script src="/assets/js/plugin/jquery-3.7.0.min.js"></script><!-- jQuery 3.7.0 -->
+    <script src="/assets/js/ui.common.min.js"></script><!-- 퍼블리싱용 js -->
+</head>
+
+<body>
+    <header>
+        <div class="header_wrap">
+
+            <h1 class="header_title">개강파티할'과'</h1>
+
+            <!-- 헤더 인클루드 -->
+        </div>
+    </header>
+    <main class="layoutM">
+        <section class="univ_begin">
+            <h2 class="univ_title">학교와 학과 이름을<br> 입력해주세요.</h2>
+            <section class="input_area">
+                <div class="form_wrap">
+                    <!-- 대학교 검색 영역 -->
+                    <div class="input_set">
+                        <div class="form_txt">
+                            <input type="text" placeholder="학교 이름을 입력해주세요" class="univ_input">
+                            <span class="blind" id="univ_val"></span>
+                        </div>
+                        <button type="button" class="btn_univ_search">검색</button>
+                    </div>
+                    <div class="search_msg univ_msg">
+                        <p class="length">두 글자 이상의 학교명을 입력해주세요.</p><!-- 두 글자 미만 입력시 노출 -->
+                        <p class="nodata">검색 결과가 없습니다.</p><!-- 검색 결과 없을 시 노출 -->
+                        <ul class="list univ_list"></ul><!-- 검색 결과 있을 시 노출 -->
+                    </div>
+                    <!--// 대학교 검색 영역 -->
+                    <!-- 학과 검색 영역 -->
+                    <div class="input_set">
+                        <div class="form_txt">
+                            <input type="text" placeholder="학과 이름을 입력해주세요" class="major_input">
+                            <span class="blind" id="major_val"></span>
+                        </div>
+                        <button type="button" class="btn_major_search">검색</button>
+                    </div>
+                    <div class="search_msg major_msg">
+                        <p class="length">두 글자 이상의 학교명을 입력해주세요.</p><!-- 두 글자 미만 입력시 노출 -->
+                        <p class="nodata">검색 결과가 없습니다.</p><!-- 검색 결과 없을 시 노출 -->
+                        <ul class="list major_list"></ul><!-- 검색 결과 있을 시 노출 -->
+                    </div>
+                    <!--// 학과 검색 영역 -->
+                    <button type="button" class="btn_reset">학교/학과를 다시 선택하고 싶다면 click</button>
+                    <button type="button" class="btn_comp">입력 완료</button>
+                    <p class="notice_txt">
+                        ※ 필수사항<br>
+						1) 학교와 학과는 현재 정식명칭으로 입력 필요<br>
+						2) 입력 완료한 학교와 학과는 추후 수정 불가<br>
+						3) 재학생 최소 10명 이상 참여시 집계 가능
+                    </p>
+                </div>
+            </section>
+            <section class="join_area">
+                <div class="join_wrap">
+                    <h2 class="join_tit">버튼을 눌러 우리 학과를 응원해주세요!</h2>
+                    <button class="btn_join">종</button>
+                </div>
+            </section>
+        </section>
+        <!-- 팝업 -->
+        <div class="alert_pop">
+            <div class="cont" id="">
+                <p class="pop_tit"></p>
+                <button class="btn_close">확인</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        // typeof 연산자
+        // if (typeof univRemove02 === 'function') {
+        // 	univRemove02();
+        // }
+        // typeof 연산자는 피연산자의 데이터 타입을 문자열로 반환한다.
+        // 예를 들어, 숫자형 변수를 대상으로 typeof를 사용하면 "number"를, 
+        // 함수형 변수를 대상으로 사용하면 "function"을 반환한다.
+
+        // === 'function'
+        // -> typeof 연산자의 결과가 'function'과 일치하는지 비교하여 맞으면 ture를 반환한다.
+
+        // if문
+        // -> 결과가 true이면 중괄호 내부의 코드를 실행한다.
+
+        // begin_univ_v2에는 univRemove02()가 함수로 정의되어 있으므로 실행되고,
+        // begin_univ에는 정의되어 있지 않으므로 실행되지 않는다.
+
+        // *이 방식의 중요점 - 정의되지 않은 함수를 호출하면 js는 오류를 던진다. 
+        // 그때 typeof 연산자를 사용하면 정의되지 않은 함수를 호줄하지 않는다.
+        // 대학, 학과 검색 성공 시 목록
+        $('.btn_comp').on('click', () => {
+            window.dataResp();
+            if (data.resp_cd == "55") {
+                open_pop('입력이 완료되었습니다!');
+                $('.btn_reset').prop('disabled', true);
+            } else if (data.resp_cd == "66") {
+                open_pop('학교명을 입력해 주세요!');
+            } else if (data.resp_cd == "77") {
+                open_pop('학과명을 입력해 주세요!');
+            } else if (data.resp_cd == "88") {
+                open_pop('학교와 학과를 입력해 주세요!');
+            }
+        });
+    </script>
+</body>
+
+</html>

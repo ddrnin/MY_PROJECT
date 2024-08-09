@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no , viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="view-transition" content="same-origin">
+    <title>ddrnin | 개강파티할'과' v2</title>
+
+    <!-- Social Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="@@title ddrnin">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="">
+
+    <!-- css -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- js -->
+    <script src="/assets/js/plugin/jquery-3.7.0.min.js"></script><!-- jQuery 3.7.0 -->
+    <script src="/assets/js/ui.common.min.js"></script><!-- 퍼블리싱용 js -->
+</head>
+
+<body>
+    <header>
+        <div class="header_wrap">
+
+            <h1 class="header_title">개강파티할'과' v2</h1>
+
+            <!-- 헤더 인클루드 -->
+        </div>
+    </header>
+    <main class="layoutM">
+        <section class="univ_begin">
+            <h2 class="univ_title">학교와 과 이름을<br> 입력해주세요.</h2>
+            <section class="input_area">
+                <div class="form_wrap">
+                    <!-- 대학교 검색 영역 -->
+                    <div class="input_set univ_input_set">
+                        <div class="form_txt">
+                            <input type="text" placeholder="학교 이름를 입력해주세요" class="univ_input">
+                        </div>
+                        <button type="button" class="btn_univ_search">검색</button>
+                        <ul class="list univ_list">
+                        </ul>
+                    </div>
+                    <div class="search_msg univ_msg">
+                        <p class="length">두 글자 이상의 학교명을 입력해주세요.</p>
+                        <p class="nodata">검색 결과가 없습니다.</p>
+                    </div>
+                    <!--// 대학교 검색 영역 -->
+                    <!-- 학과 검색 영역 -->
+                    <div class="input_set major_input_set">
+                        <div class="form_txt">
+                            <input type="text" placeholder="학과 이름를 입력해주세요" class="major_input">
+                        </div>
+                        <button type="button" class="btn_major_search">검색</button>
+                        <ul class="list major_list">
+
+                        </ul>
+                    </div>
+                    <div class="search_msg major_msg">
+                        <p class="length">두 글자 이상의 학과명을 입력해주세요.</p>
+                        <p class="nodata">검색 결과가 없습니다.</p>
+                    </div>
+                    <!--// 학과 검색 영역 -->
+                    <button type="button" class="btn_nodata">학교, 학과 검색이 안 되면 클릭</button>
+                    <button type="button" class="btn_comp">입력 완료</button>
+                    <p class="notice_txt">
+                        ※ 필수사항<br>
+						1) 학교와 학과는 현재 정식명칭으로 입력 필요<br>
+						2) 입력한 학교와 학과는 추후 수정 불가<br>
+						3) 재학생 최소 10명 이상 참여시 집계 가능
+                    </p>
+                </div>
+            </section>
+        </section>
+    </main>
+    <script>
+        // $(document).ready(function() {
+        // 	// 퍼블확인용 임시 데이터
+        // 	const universities = [
+        // 		"서울대학교", "서울과학기술대학교", "서울시립대학교", "서울교대", "서울여대",
+        // 		"경희대학교", "고려대학교", "연세대학교", "서강대학교", "성균관대학교",
+        // 		"한양대학교", "중앙대학교", "동국대학교", "건국대학교", "홍익대학교",
+        // 	];
+        // 	const majors = [
+        // 		"경영학", "경제학", "관광경영학", "광고홍보학", "국어국문학", "일어일문학", "영어영문학", "중어중문학",
+        // 		"철학", "유아교육", "사학", "기계공학", "화학공학", "건축공학", "항공우주공학", "항공운항학",
+        // 		"조선공학", "기계설계공학", "전기공학", "전기전자공학", "전기제어공학"
+        // 	];
+
+        // 	// 대학, 학과 검색 성공 시 목록
+        // 	const univList = $('.univ_list');
+        // 	const majorList = $('.major_list');
+        // 	// 대학, 학과 검색 결과 없을 시 메시지
+        // 	const univNodata = $('.univ_msg .nodata');
+        // 	const majorNodata = $('.major_msg .nodata');
+        // 	// 대학, 학과 두 글자 미만 입력 시 메시지
+        // 	const univLengthMsg = $('.univ_msg .length');
+        // 	const majorLengthMsg = $('.major_msg .length');
+        // 	// 대학, 학과 검색 input
+        // 	const univInput = $('.univ_input');
+        // 	const majorInput = $('.major_input');
+
+        // 	// 두 글자 미만일 경우 오류 메시지
+        // 	function univLength() {
+        // 		univList.empty();// 목록 초기화
+        // 		if (univInput.val().length < 2) {
+        // 			univLengthMsg.show();
+        // 			$('.univ_input_set').removeClass('on');
+        // 		} else {
+        // 			univLengthMsg.hide();
+        // 		}
+        // 	}
+        // 	function majorLength() {
+        // 		majorList.empty();// 목록 초기화
+        // 		if (majorInput.val().length < 2) {
+        // 			majorLengthMsg.show();
+        // 			$('.major_input_set').removeClass('on');
+        // 		} else {
+        // 			majorLengthMsg.hide();
+        // 		}
+        // 	}
+
+        // 	// 대학교 검색
+        // 	function searchUniv(keyword) {
+        // 		const results = universities.filter(univName => univName.includes(keyword));// 검색어 포함 여부 확인하여 results배열에 저장
+        // 		// 검색어 포함하는 학교들 각 li 생성
+        // 		results.forEach(univName => {
+        // 			const univLi =
+        // 			`<li>
+        // 				<p class="univ_name">${univName}</p>
+        // 				<button type="button" class="select_univ">선택</button>
+        // 			</li>`;
+        // 			univList.append(univLi);// 검색 결과 목록에 저장
+        // 		});
+        // 		$('.univ_input_set').addClass('on');
+        // 		// 검색 결과 없으면 메시지 노출
+        // 		if (results.length === 0) {
+        // 			univNodata.show();
+        // 			$('.univ_input_set').removeClass('on');
+        // 		} else {
+        // 			univNodata.hide();
+        // 		}
+        // 	}
+        // 	// 학과 검색
+        // 	function searchMajor(keyword) {
+        // 		const results = majors.filter(majorName => majorName.includes(keyword));// 검색어 포함 여부 확인하여 results배열에 저장
+        // 		// 검색어 포함하는 학과들 각 li 생성
+        // 		results.forEach(majorName => {
+        // 			const majorLi =
+        // 			`<li>
+        // 				<p class="major_name">${majorName}</p>
+        // 				<button type="button" class="select_major">선택</button>
+        // 			</li>`;
+        // 			majorList.append(majorLi);// 검색 결과 목록에 저장
+        // 		});
+        // 		$('.major_input_set').addClass('on');
+        // 		// 검색 결과 없으면 메시지 노출
+        // 		if (results.length === 0) {
+        // 			majorNodata.show();
+        // 			$('.major_input_set').removeClass('on');
+        // 		} else {
+        // 			majorNodata.hide();
+        // 		}
+        // 	}
+        // 	// 대학교 검색 처리
+        // 	function univSearch() {
+        // 		univLength();// 두 글자 미만 처리
+        // 		// 두 글자 이상일 시 검색 처리
+        // 		const keyword = univInput.val();
+        // 		if (keyword.length >= 2) {
+        // 			searchUniv(keyword);
+        // 		} else {
+        // 			univNodata.hide();
+        // 		}
+        // 	}
+        // 	// 검색 버튼 클릭, 엔터 시 대학교 검색
+        // 	$('.btn_univ_search').on('click', univSearch);
+        // 	univInput.on('keyup', function(event) {
+        // 		if (event.key === 'Enter') {
+        // 			univSearch();
+        // 		}
+        // 	});
+        // 	// 학과 검색 처리
+        // 	function majorSearch() {
+        // 		majorLength();// 두 글자 미만 처리
+        // 		// 두 글자 이상일 시 검색 처리
+        // 		const keyword = majorInput.val();
+        // 		if (keyword.length >= 2) {
+        // 			searchMajor(keyword);
+        // 		} else {
+        // 			majorNodata.hide();
+        // 		}
+        // 	}
+        // 	// 검색 버튼 클릭, 엔터 시 학과 검색
+        // 	$('.btn_major_search').on('click', majorSearch);
+        // 	majorInput.on('keyup', function(event) {
+        // 		if (event.key === 'Enter') {
+        // 			majorSearch();
+        // 		}
+        // 	});
+        // 	// 대학교 검색 결과에서 선택 버튼 클릭 시 실행
+        // 	function selectUniv() {
+        // 		const selectedUniv = $(this).siblings('.univ_name').text();
+        // 		univInput.val(selectedUniv);
+        // 		univList.empty();
+        // 		$('.univ_input_set').removeClass('on');
+        // 	}
+        // 	$(document).on('click', '.select_univ', selectUniv);
+        // 	// 학과 검색 결과에서 선택 버튼 클릭 시 실행
+        // 	function selectMajor() {
+        // 		const selectedMajor = $(this).siblings('.major_name').text();
+        // 		majorInput.val(selectedMajor);
+        // 		majorList.empty();
+        // 		$('.major_input_set').removeClass('on');
+        // 	}
+        // 	$(document).on('click', '.select_major', selectMajor);
+        // });
+        function univAdd01() {
+            $('.univ_input_set').addClass('on');
+        }
+
+        function univAdd02() {
+            $('.major_input_set').addClass('on');
+        }
+
+        function univRemove01() {
+            $('.univ_input_set').removeClass('on');
+        }
+
+        function univRemove02() {
+            $('.major_input_set').removeClass('on');
+        }
+    </script>
+</body>
+
+</html>
