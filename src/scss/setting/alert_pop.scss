@@ -1,4 +1,5 @@
-.alert_pop{
+.alert_pop,
+.confirm_pop{
 	display: none;
 	position: fixed;
 	top: 50%;
@@ -17,11 +18,26 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		.btn_wrap2{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 80%;
+		}
 		.pop_tit{
 			padding: 20px 0px;
 		}
+		.btn_confirm{
+			width: 49%;
+			padding: 20px;
+			border: 1px solid #3fd31a;
+			background: #ffecdc;
+			border-radius: 10px;
+			font-size: 16px;
+			font-weight: bold;
+		}
 		.btn_close{
-			width: 80%;
+			width: 49%;
 			padding: 20px;
 			border: 1px solid #ffa356;
 			background: #ffecdc;

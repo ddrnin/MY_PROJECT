@@ -83,11 +83,26 @@
             <section class="join_area">
                 <div class="join_wrap">
                     <h2 class="join_tit">버튼을 눌러 우리 학과를 응원해주세요!</h2>
-                    <button class="btn_join">종</button>
+                    <div class="btn_wrap">
+                        <button class="btn_join">종</button>
+                    </div>
+                    <div class="name_wrap">
+                        <p>학교 : <span class="univ_name"></span></p>
+                        <p>학과 : <span class="major_name"></span></p>
+                    </div>
                 </div>
             </section>
         </section>
         <!-- 팝업 -->
+        <div class="confirm_pop">
+            <div class="cont" id="">
+                <p class="pop_tit"></p>
+                <div class="btn_wrap2">
+                    <button class="btn_confirm">확인</button>
+                    <button class="btn_close">취소</button>
+                </div>
+            </div>
+        </div>
         <div class="alert_pop">
             <div class="cont" id="">
                 <p class="pop_tit"></p>
@@ -116,19 +131,6 @@
         // *이 방식의 중요점 - 정의되지 않은 함수를 호출하면 js는 오류를 던진다. 
         // 그때 typeof 연산자를 사용하면 정의되지 않은 함수를 호줄하지 않는다.
         // 대학, 학과 검색 성공 시 목록
-        $('.btn_comp').on('click', () => {
-            window.dataResp();
-            if (data.resp_cd == "55") {
-                open_pop('입력이 완료되었습니다!');
-                $('.btn_reset').prop('disabled', true);
-            } else if (data.resp_cd == "66") {
-                open_pop('학교명을 입력해 주세요!');
-            } else if (data.resp_cd == "77") {
-                open_pop('학과명을 입력해 주세요!');
-            } else if (data.resp_cd == "88") {
-                open_pop('학교와 학과를 입력해 주세요!');
-            }
-        });
     </script>
 </body>
 

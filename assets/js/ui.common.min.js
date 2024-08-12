@@ -24,7 +24,6 @@ $(document).ready(function() {
 	// 대학, 학과 검색 input
 	const univInput = $('.univ_input');
 	const majorInput = $('.major_input');
-
 	// 두 글자 미만일 경우 오류 메시지
 	function univLength() {
 		univList.empty();// 목록 초기화
@@ -137,7 +136,6 @@ $(document).ready(function() {
 			majorSearch();
 		}
 	});
-
 	// 대학교 검색 결과에서 선택 버튼 클릭 시 실행
 	function selectUniv() {
 		const selectedUniv = $(this).siblings('.univ_name').text();
@@ -145,7 +143,7 @@ $(document).ready(function() {
 		univInput.val(selectedUniv);
 		// #univ_val에 대학 이름 저장
 		$('#univ_val').val(selectedUniv);
-		const univ_val = $('#univ_val').val();
+		univ_val = $('#univ_val').val();
 		// 목록 초기화
 		univList.empty();
 		// input, button 비활성화
@@ -164,7 +162,7 @@ $(document).ready(function() {
 		majorInput.val(selectedMajor);
 		// major_val에 학과 이름 저장
 		$('#major_val').val(selectedMajor);
-		const major_val = $('#major_val').val();
+		major_val = $('#major_val').val();
 		// 목록 초기화
 		majorList.empty();
 		// input, button 비활성화
@@ -176,7 +174,9 @@ $(document).ready(function() {
 		}
 	}
 	$(document).on('click', '.select_major', selectMajor);
-	
+	// join영역에 값 전달 위한 전역 변수 선언
+	let univ_val = '';
+	let major_val = '';
 	// 입력 완료 버튼 클릭 시  
 	// 팝업
 	window.data = {
@@ -193,9 +193,40 @@ $(document).ready(function() {
 			data.resp_cd = "88";
 		}
 	};
-	
+	$('.btn_comp').on('click', () => {
+		window.dataResp();
+		if (data.resp_cd == "55") {
+			confirm_pop('입력하시면 변경할 수 없습니다.<br>입력하시겠습니까?');
+		} else if (data.resp_cd == "66") {
+			open_pop('학교명을 입력해 주세요!');
+		} else if (data.resp_cd == "77") {
+			open_pop('학과명을 입력해 주세요!');
+		} else if (data.resp_cd == "88") {
+			open_pop('학교와 학과를 입력해 주세요!');
+		}
+	});
+	const reset_pop = () => {
+		$('.btn_univ_search').prop('disabled', false);
+		univInput.prop('disabled', false);
+		univInput.val('');
+		$('.btn_major_search').prop('disabled', false);
+		majorInput.prop('disabled', false);
+		majorInput.val('');
+	}
+	$('.btn_confirm').on('click', () => {
+		close_pop();
+		open_pop('입력이 완료되었습니다!');
+		$('.btn_comp').prop('disabled', true);
+		$('.btn_reset').prop('disabled', true);
+		// 값 join영역에 전달
+		$('.univ_name').text(univ_val);
+		$('.major_name').text(major_val);
+	});
+	$('.btn_reset').on('click', () => {
+		reset_pop();
+	})
 	$('.btn_close').on('click', () => {
-		close_pop()
+		close_pop();
 	})
 });
 
@@ -203,10 +234,16 @@ $(document).ready(function() {
 const open_pop = (message) => {
 	$('body').addClass('fixed');
 	$('.alert_pop').fadeIn();
-	$('.alert_pop .pop_tit').text(message);
+	$('.alert_pop .pop_tit').html(message);
 };
-
+const confirm_pop = (message) => {
+	$('body').addClass('fixed');
+	$('.confirm_pop').fadeIn();
+	$('.confirm_pop .pop_tit').html(message);
+	
+}
 const close_pop = () => {
 	$('body').removeClass('fixed');
 	$('.alert_pop').fadeOut();
+	$('.confirm_pop').fadeOut();
 }
