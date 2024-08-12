@@ -1,13 +1,13 @@
-@import 'swiper/swiper연습.scss' ;
+
 // setting
 @import 'setting/setting.scss' ;
 @import 'setting/alert_pop.scss' ;
-
+@import 'layout/header.scss' ;
 // frontend
 @import 'frontend/begin_univ.scss' ;
 @import 'frontend/begin_univ_v2.scss' ;
 @import 'frontend/coupon_grap.scss' ;
 @import 'frontend/bluemarble.scss.scss' ;
 
-
-@import 'layout/header.scss' ;
+// 연습
+@import 'swiper/swiper.scss' ;

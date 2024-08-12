@@ -6,13 +6,71 @@
 	})
 </head>
 <body>
+	@@include('../_partials/_header.html', {
+		"header_type": "practice",
+		"header_title": "스와이퍼 연습"
+	})
 	<main>
-		<div>
-			@@include('../_partials/_header.html', {
-				"header_type": "practice",
-				"header_title": "스와이퍼 연습"
-			})
+		<div class="animaition">
+			<svg class="moving">
+				<rect class="ani01"></rect>
+			</svg>
+		</div>
+		<div class="animaition_bg"></div>
+		<div class="main">
+			<div class="swiper mySwiper">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<div class="bg_img" style="background-image:url('../../../assets/img/swiper/bg01.jpg')" data-swiper-parallax-x="50%"></div>
+					</div>
+					<div class="swiper-slide">
+						<div class="bg_img" style="background-image:url('../../../assets/img/swiper/bg02.jpg')" data-swiper-parallax-x="50%"></div>
+					</div>
+					<div class="swiper-slide">
+						<div class="bg_img" style="background-image:url('../../../assets/img/swiper/bg03.jpg')" data-swiper-parallax-x="50%"></div>
+					</div>
+					<div class="swiper-slide">
+						<div class="bg_img" style="background-image:url('../../../assets/img/swiper/bg04.jpg')" data-swiper-parallax-x="50%"></div>
+					</div>
+				</div>
+			</div>
+			<div class="navigation">
+				<div class="arrow-btn swiper-button-next"><i></i></div>
+				<div class="loading_bar on"></div>
+				<div class="arrow-btn swiper-button-prev"><i></i></div>
+			</div>
 		</div>
 	</main>
 </body>
+<script>
+	var swiper = new Swiper(".mySwiper", {
+		parallax: true,
+		loop: true,
+		speed:1000,
+		autoplay: {
+			delay: 3150,
+			disableOnInteraction: false,
+		},
+		navigation: {   // 버튼 사용자 지정
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		},
+		on: {
+			// 슬라이드가 바뀌기 시작할 때
+			slideChangeTransitionStart:function(){
+				$('.loading_bar').removeClass('on');
+			},
+			// 슬라이드가 바뀌고 나서
+			slideChangeTransitionEnd: function () {
+				$('.loading_bar').addClass('on');
+			},
+		},
+	});
+	$(document).ready(function(){
+		setTimeout(() => {
+			$('.animaition').addClass('off');
+			$('.animaition_bg').addClass('off');
+		}, 2400);
+	});
+</script>
 </html>

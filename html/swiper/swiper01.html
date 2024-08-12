@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="lib/setting.css">
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <div class="animaition">
+        <svg class="moving">
+            <rect class="ani01"></rect>
+        </svg>
+    </div>
+    <div class="animaition_bg"></div>
+    <div class="main">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="bg_img" style="background-image:url('/img/bg02.jpg')" data-swiper-parallax-x="50%"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bg_img" style="background-image:url('/img/bg01.jpg')" data-swiper-parallax-x="50%"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bg_img" style="background-image:url('/img/bg03.jpg')" data-swiper-parallax-x="50%"></div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bg_img" style="background-image:url('/img/bg04.jpg')" data-swiper-parallax-x="50%"></div>
+                </div>
+            </div>
+        </div>
+        <div class="navigation">
+            <div class="arrow-btn swiper-button-next"><i></i></div>
+            <div class="loading_bar on"></div>
+            <div class="arrow-btn swiper-button-prev"><i></i></div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        parallax: true,
+        loop: true,
+        speed: 1000,
+        autoplay: {
+            delay: 3150,
+            disableOnInteraction: false,
+        },
+        navigation: { // 버튼 사용자 지정
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        on: {
+            // 슬라이드가 바뀌기 시작할 때
+            slideChangeTransitionStart: function() {
+                $('.loading_bar').removeClass('on');
+            },
+            // 슬라이드가 바뀌고 나서
+            slideChangeTransitionEnd: function() {
+                $('.loading_bar').addClass('on');
+            },
+        },
+    });
+    $(document).ready(function() {
+        setTimeout(() => {
+            $('.animaition').addClass('off');
+            $('.animaition_bg').addClass('off');
+        }, 2400);
+    });
+</script>
+
+</html>

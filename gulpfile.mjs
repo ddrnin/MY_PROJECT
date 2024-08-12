@@ -71,12 +71,12 @@ gulp.task('sass', function(){
 	.pipe(sass(scssOption).on('error', sass.logError))
 	.pipe(autoprefixer())
 	.pipe(sourcemaps.write('./'))
+	.pipe(cssmin())
 	// 처리된 sass파일을 assets/css/에 1차 저장
 	.pipe(gulp.dest(dist.css))
-	.pipe(rename('style.min.css'))
-	.pipe(cssmin())
+	// .pipe(rename('style.min.css'))
 	// 1차 저장된 css들을 이름을 바꾸고 압축해서 2차저장
-	.pipe(gulp.dest(dist.css))
+	// .pipe(gulp.dest(dist.css))
 	.pipe(browserSync.reload({ stream: true }))
 });
 
