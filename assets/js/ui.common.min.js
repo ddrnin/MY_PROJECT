@@ -224,9 +224,17 @@ $(document).ready(function() {
 	});
 	$('.btn_reset').on('click', () => {
 		reset_pop();
-	})
+	});
 	$('.btn_close').on('click', () => {
 		close_pop();
+	});
+
+	// join 영역
+	$('.btn_join').on('click', () => {
+		if ($('.join_area .btn_wrap').hasClass('chance')) {
+			const countJoin = $('.join_area .btn_wrap .count');
+			$('.join_area .btn_wrap .count').text($('.join_area .btn_wrap .count')++);
+		}
 	})
 });
 
@@ -240,10 +248,24 @@ const confirm_pop = (message) => {
 	$('body').addClass('fixed');
 	$('.confirm_pop').fadeIn();
 	$('.confirm_pop .pop_tit').html(message);
-	
 }
 const close_pop = () => {
 	$('body').removeClass('fixed');
 	$('.alert_pop').fadeOut();
 	$('.confirm_pop').fadeOut();
 }
+// function open_pop(message){
+// 	$('body').addClass('fixed');
+// 	$('.alert_pop').fadeIn();
+// 	$('.alert_pop .pop_tit').html(message);
+// }
+// function pop_pop(a){
+// 	$('body')[a]('fixed');
+// }
+// $('.btn_comp').on('click', () => {
+// 	if (data.resp_cd == "55") {
+// 		pop_pop('addClass');
+// 	} else if (data.resp_cd == "66") {
+// 		pop_pop('removeClass');
+// 	}
+// });

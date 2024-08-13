@@ -1,14 +1,4 @@
-@mixin keyframes($name) {
-	@-webkit-keyframes #{$name} {
-		@content;
-	}
-	@-moz-keyframes #{$name} {
-		@content;
-	}
-	@keyframes #{$name} {
-		@content;
-	}
-}
+@import '../setting/mixin.scss' ;
 .animaition{
 	display: inline-block;
 	position: absolute;
