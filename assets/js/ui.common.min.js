@@ -213,6 +213,13 @@ $(document).ready(function() {
 		majorInput.prop('disabled', false);
 		majorInput.val('');
 	}
+	$('.btn_reset').on('click', function(){
+		if(univInput.prop('disabled')){
+			default_pop('초기화 되었습니다.')
+		} else if (majorInput.prop('disabled')){
+			default_pop('초기화 되었습니다.')
+		} 
+	})
 	$('.btn_confirm').on('click', () => {
 		close_pop();
 		open_pop('입력이 완료되었습니다!');
@@ -221,6 +228,8 @@ $(document).ready(function() {
 		// 값 join영역에 전달
 		$('.univ_name').text(univ_val);
 		$('.major_name').text(major_val);
+		// 응원 횟수 핸들러
+		$('.univ_name').addClass('entered');
 	});
 	$('.btn_reset').on('click', () => {
 		reset_pop();
@@ -229,11 +238,30 @@ $(document).ready(function() {
 		close_pop();
 	});
 
-	// join 영역
+	// join bell 영역
+	const countJoin = $('.join_area .btn_wrap .count');// 응원 한 횟수
+	let countText = parseInt(countJoin.text());// 응원 한 횟수 정수로
+	const countMy = $('.join_area .btn_wrap .countMy');// 응원 가능 횟수
+	let countMyVal = parseInt(countMy.text().replace(/,/g, ''));// 응원 가능 횟수 정수로 / ,제거하고 계산
 	$('.btn_join').on('click', () => {
-		if ($('.join_area .btn_wrap').hasClass('chance')) {
-			const countJoin = $('.join_area .btn_wrap .count');
-			$('.join_area .btn_wrap .count').text($('.join_area .btn_wrap .count')++);
+		if ($('.join_area .univ_name').hasClass('entered')) {
+			if(countMyVal > 0){
+				// 응원 한 횟수 1씩 증가
+				countText++;
+				countJoin.text(countText.toLocaleString());
+				// bell 애니메이션
+				$('.btn_join').removeClass('clicked');
+				void $('.btn_join')[0].offsetWidth;// [0]쓰는 이유 - offsetWidth가 제이쿼리 요소가 아니라 원시 dom요소이기 때문에
+				$('.btn_join').addClass('clicked');
+				default_pop('응원 횟수가 증가하였습니다.')
+				// 응원 가능 횟수 1씩 감소
+				countMyVal--;
+				countMy.text(countMyVal.toLocaleString()); // 감소된 값을 다시 설정 천단위, 생성
+			} else {
+				default_pop('응원 가능 횟수가 부족합니다')
+			}
+		} else {
+			default_pop('학교와 학과를 먼저 입력해주세요')
 		}
 	})
 });
@@ -253,6 +281,12 @@ const close_pop = () => {
 	$('body').removeClass('fixed');
 	$('.alert_pop').fadeOut();
 	$('.confirm_pop').fadeOut();
+	$('.default_pop').fadeOut();
+}
+const default_pop = (message) => {
+	$('body').addClass('fixed');
+	$('.default_pop').fadeIn();
+	$('.default_pop .pop_tit').html(message);
 }
 // function open_pop(message){
 // 	$('body').addClass('fixed');

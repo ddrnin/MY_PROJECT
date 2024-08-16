@@ -82,7 +82,11 @@ gulp.task('sass', function(){
 
 // js 처리
 gulp.task('js', function(){
-	return gulp.src([src.js + '*.js', src.js + '/**/*.js'])
+	return gulp.src([
+		src.js + '*.js', 
+		src.js + '/**/*.js',
+		'!' + src.js + 'plugin/**'
+	])
 	.pipe(rename({ extname: '.min.js'}))
 	.pipe(gulp.dest(dist.js))
 	.pipe(browserSync.reload({ stream: true }));

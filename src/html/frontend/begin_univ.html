@@ -11,8 +11,26 @@
 		"header_title": "개강파티할'과'"
 	})
 	<main class="layoutM">
+		<img src="../../../assets/img/begin_univ/party_visual.jpg" alt="">
+		<section class="univ_swiper_area">
+			<img src="../../../assets/img/begin_univ/party_swiper_tit.jpg" alt="">
+			<div class="swiper univ_swiper">
+				<ul class="swiper-wrapper">
+					<li class="swiper-slide">
+						<img src="../../../assets/img/begin_univ/party_slide01.png" alt="">
+					</li>
+					<li class="swiper-slide">
+						<img src="../../../assets/img/begin_univ/party_slide02.png" alt="">
+					</li>
+					<li class="swiper-slide">
+						<img src="../../../assets/img/begin_univ/party_slide03.png" alt="">
+					</li>
+				</ul>
+				<div class="swiper-pagination"></div>
+			</div>
+		</section>
 		<section class="univ_begin">
-			<h2 class="univ_title">학교와 학과 이름을<br> 입력해주세요.</h2>
+			<h2 class="univ_title">'학교'와 '학과' 이름을<br> 입력해주세요.</h2>
 			<section class="input_area">
 				<div class="form_wrap">
 					<!-- 대학교 검색 영역 -->
@@ -60,7 +78,8 @@
 						<button class="btn_join">
 							<img src="../../../assets/img/begin_univ/bell.png" alt="종">
 						</button>
-						<p>우리 과 응원 횟수 : <span class="count"></span></p>
+						<p>우리 과 응원 횟수 : <span class="count">0</span></p>
+						<p>나의 응원 가능 횟수 : <span class="countMy">3,000</span></p>
 					</div>
 					<div class="name_wrap">
 						<p id="a3a3">학교 : <span class="univ_name"></span></p>
@@ -70,6 +89,8 @@
 			</section>
 		</section>
 		<div class="practice">
+			<input type="text" placeholder="dad">
+			<progress value="0.4"></progress>
 			<button class="open_btn">버튼1</button>
 			<button class="close_btn">버튼2</button>
 			<div class="alert_box"></div>
@@ -85,6 +106,12 @@
 			</div>
 		</div>
 		<div class="alert_pop">
+			<div class="cont" id="">
+				<p class="pop_tit"></p>
+				<button class="btn_close">확인</button>
+			</div>
+		</div>
+		<div class="default_pop">
 			<div class="cont" id="">
 				<p class="pop_tit"></p>
 				<button class="btn_close">확인</button>
@@ -112,6 +139,24 @@
 		// *이 방식의 중요점 - 정의되지 않은 함수를 호출하면 js는 오류를 던진다. 
 		// 그때 typeof 연산자를 사용하면 정의되지 않은 함수를 호줄하지 않는다.
 		// 대학, 학과 검색 성공 시 목록
+		univSwiper();
+		//개강파티할과 슬라이드
+		function univSwiper(){
+			var partySwiper = new Swiper(".univ_swiper", {
+				loop: "true",
+				autoplay: {
+					delay: 3000,
+					disableOnInteraction: false,
+				},
+				loopAdditionalSlides : 1,
+				spaceBetween: 100,
+				pagination: {
+					el: ".swiper-pagination",
+					clickable: "true",
+				},
+			});
+		}
+
 		function openSS(aa){
 			document.querySelector('.alert_box').innerText = aa;
 			document.querySelector('.alert_box').style.visibility = 'visible';
