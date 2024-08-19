@@ -2,118 +2,114 @@
 <html lang="en">
 <head>
     @@include('../_partials/_head.html', {
-		"head_title" : "쿠폰 감소 게이지"
+		"head_title" : "쿠폰 감소 프로그레스바"
 	})
 </head>
 <body>
 	@@include('../_partials/_header.html', {
 		"header_type": "practice",
-		"header_title": "쿠폰 감소 게이지"
+		"header_title": "쿠폰 감소 프로그레스바"
 	})
-	<img src="../../../assets/img/coupon_grap/poketbell_visual.jpg" alt="">
-    <div class="coupon_grap">
-        <div class="coupon_wrap coupon_wrap01">
-			<div class="blind">1번</div>
-			<div class="center_img center_img01">
-				<img src="../../../assets/img/coupon_grap/poketbell_box01_on.jpg" alt="">
+	<main class="layoutM coupon_grap">
+		<img src="../../../assets/img/coupon_grap/poketbell_visual.jpg" alt="">
+		<div class="coupon_grap">
+			<div class="coupon_wrap coupon_wrap01">
+				<div class="blind">맥주</div>
+				<div class="center_img center_img01">
+					<img src="../../../assets/img/coupon_grap/poketbell_box01_on.jpg" alt="">
+				</div>
+				<div class="center_img center_img02">
+					<img src="../../../assets/img/coupon_grap/poketbell_box01_off.jpg" alt="">
+				</div>
+				<div class="grap_area get">
+					<div class="grap">
+						<div class="grap_inside"></div>
+					</div>
+					<div class="count_box">
+						<span class="count">2,000</span>/2,000
+					</div>
+					<button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
+					<button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
+				</div>
 			</div>
-			<div class="center_img center_img02">
-				<img src="../../../assets/img/coupon_grap/poketbell_box01_off.jpg" alt="">
-			</div>
-            <div class="grap_area get">
-                <div class="grap">
-                    <div class="grap_inside"></div>
-                </div>
-                <div class="count_box">
-                    <span class="count">2,000</span>/2,000
-                </div>
-				<button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
-				<button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
-            </div>
-        </div>
-	</div>
-	<div class="coupon_grap">
-		<div class="coupon_wrap coupon_wrap02">
-			<div class="blind">2번</div>
-			<div class="center_img center_img01">
-				<img src="../../../assets/img/coupon_grap/poketbell_box_on.jpg" alt="">
-			</div>
-			<div class="center_img center_img02">
-				<img src="../../../assets/img/coupon_grap/poketbell_box_off.jpg" alt="">
-			</div>
-            <div class="grap_area get">
-                <div class="grap">
-                    <div class="grap_inside">
-                    </div>
-                </div>
-                <div class="count_box">
-                    <span class="count">1,000</span>/1,000
-                </div>
-				<button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
-				<button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
-            </div>
-        </div>
-	</div>
-	<div class="coupon_grap">
-		<div class="coupon_wrap coupon_wrap03">
-			<div class="blind">하이볼</div>
-            <div class="center_img center_img01">
-				<img src="../../../assets/img/coupon_grap/poketbell_box_on.jpg" alt="">
-			</div>
-			<div class="center_img center_img02">
-				<img src="../../../assets/img/coupon_grap/poketbell_box_off.jpg" alt="">
-			</div>
-            <div class="grap_area get">
-                <div class="grap">
-                    <div class="grap_inside">
-                    </div>
-                </div>
-                <div class="count_box">
-                    <span class="count">1,500</span>/1,500
-                </div>
-				<button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
-				<button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
-            </div>
-        </div>
-	</div>
-	<div class="coupon_grap">
-		<div class="coupon_wrap coupon_wrap04">
-			<div class="blind">냉장디저트</div>
-            <div class="center_img center_img01">
-				<img src="../../../assets/img/coupon_grap/poketbell_box_on.jpg" alt="">
-			</div>
-			<div class="center_img center_img02">
-				<img src="../../../assets/img/coupon_grap/poketbell_box_off.jpg" alt="">
-			</div>
-            <div class="grap_area get">
-                <div class="grap">
-                    <div class="grap_inside">
-                    </div>
-                </div>
-                <div class="count_box">
-                    <span class="count">10</span>/10
-                </div>
-				<button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
-				<button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
-            </div>
-        </div>
-    </div>
-	<img src="../../../assets/img/coupon_grap/poketbell_visual_bottom.jpg" alt="">
-
-	<!-- 팝업 부분 -->
-	<div class="pop coupon_pop_up01">
-		<div class="pop_up_wrap">
-			<h2><span id="selectedCoupon"></span> 쿠폰이 발급 되었습니다.</h2>
-			<button class="btn_close">확인</button>
 		</div>
-	</div>
-	<div class="pop coupon_pop_up02">
-		<div class="pop_up_wrap">
-			<h2>쿠폰이 모두 소진되었습니다.</h2>
-			<button class="btn_close">확인</button>
+		<div class="coupon_grap">
+			<div class="coupon_wrap coupon_wrap02">
+				<div class="blind">2번</div>
+				<div class="center_img center_img01">
+					<img src="../../../assets/img/coupon_grap/poketbell_box_on.jpg" alt="">
+				</div>
+				<div class="center_img center_img02">
+					<img src="../../../assets/img/coupon_grap/poketbell_box_off.jpg" alt="">
+				</div>
+				<div class="grap_area">
+					<div class="grap">
+						<div class="grap_inside">
+						</div>
+					</div>
+					<div class="count_box">
+						<span class="count">1,000</span>/1,000
+					</div>
+					<button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
+					<button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
+				</div>
+			</div>
 		</div>
-	</div>
-	<!--// 팝업 부분 -->
+		<div class="coupon_grap">
+			<div class="coupon_wrap coupon_wrap03">
+				<div class="blind">하이볼</div>
+				<div class="center_img center_img01">
+					<img src="../../../assets/img/coupon_grap/poketbell_box_on.jpg" alt="">
+				</div>
+				<div class="center_img center_img02">
+					<img src="../../../assets/img/coupon_grap/poketbell_box_off.jpg" alt="">
+				</div>
+				<div class="grap_area get">
+					<div class="grap">
+						<div class="grap_inside">
+						</div>
+					</div>
+					<div class="count_box">
+						<span class="count">1,500</span>/1,500
+					</div>
+					<button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
+					<button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
+				</div>
+			</div>
+		</div>
+		<div class="coupon_grap">
+			<div class="coupon_wrap coupon_wrap04">
+				<div class="blind">냉장디저트</div>
+				<div class="center_img center_img01">
+					<img src="../../../assets/img/coupon_grap/poketbell_box_on.jpg" alt="">
+				</div>
+				<div class="center_img center_img02">
+					<img src="../../../assets/img/coupon_grap/poketbell_box_off.jpg" alt="">
+				</div>
+				<div class="grap_area get">
+					<div class="grap">
+						<div class="grap_inside">
+						</div>
+					</div>
+					<div class="count_box">
+						<span class="count">10</span>/10
+					</div>
+					<button class="btn_coupon"><img src="../../../assets/img/coupon_grap/btn_coupon.png" alt=""></button>
+					<button class="btn_coupon_off"><img src="../../../assets/img/coupon_grap/btn_coupon_off.png" alt=""></button>
+				</div>
+			</div>
+		</div>
+		<img src="../../../assets/img/coupon_grap/poketbell_visual_bottom.jpg" alt="">
+	
+		<!-- 팝업 부분 -->
+		<div class="one_btn_pop">
+			<div class="cont" id="">
+				<p class="pop_tit"><span id="selectedCoupon"></span></p>
+				<button class="btn_close">확인</button>
+			</div>
+		</div>
+		<!--// 팝업 부분 -->
+	</main>
 </body>
 <script>
 	$(document).ready(function() {
@@ -122,41 +118,34 @@
     var decreaseAmount = [0.05, 0.1, 0.066667, 10];
     var width = new Array(4).fill(100);
 
-		$(document).on("click", ".btn_coupon", function() {
+		$(".btn_coupon").on("click", function() {
 			// count 감소 부분
-			var clickedBtn = $(this);
-			count(clickedBtn);
+			count($(this));
 			function count(clickedBtn){
 				// 클릭된 버튼의 .count에서 현재값 가져오기
 				var couponWrap = clickedBtn.closest('.coupon_wrap');
-				var countElement = couponWrap.find('.count'); // countElement는 .count를 저장한 변수
-				var currentText = countElement.text(); // currentText는 .count의 text값을 저장한 변수 / .count의 text를 숫자로 변환하기 위해 사용
+				var downCount = couponWrap.find('.count'); // countElement는 .count를 저장한 변수
 				// .get 유무 확인
 				var couponGet = couponWrap.find('.grap_area');
-				// 쿠폰 이름 지정
+				// 쿠폰 이름
 				var couponName = couponWrap.find('.blind').text();
-
 				// .count의 text를 쉼표 제거 후 숫자로 변환 -> 숫자로 변환해야 계산 가능 
-				var currentCount = parseInt(currentText.replace(/,/g, '')); // currentCount는 출력되는 숫자 
+				var downCountMinus = parseInt(downCount.text().replace(/,/g, '')); // currentCount는 출력되는 숫자 
 				// 현재 카운트가 1 이상일 때만 감소
-				if (currentCount >= 1) {
+				if (downCountMinus >= 1) {
 					// .grap_area .get 유무 확인
 					if(couponGet.hasClass('get')){
-						currentCount--;
 						// .count 요소에 업데이트
-						countElement.text(currentCount.toLocaleString()); // 다시 쉼표를 포함한 문자열로 변환하여 출력
+						downCountMinus--;
+						downCount.text(downCountMinus.toLocaleString()); // 다시 쉼표를 포함한 문자열로 변환하여 출력
 						// 쿠폰 성공 팝업 오픈
-						$('.coupon_pop_up01').slideDown(500);
-						// 쿠폰 이름 삽입
-						$('.coupon_pop_up01 #selectedCoupon').text(couponName);
-						$('body').addClass('fixed');
+						default_pop(couponName + ' 쿠폰이 발급되었습니다')
 					} else {
 						// .get 없을 시 쿠폰 소진 팝업 오픈
-						$('.coupon_pop_up02').slideDown(500);
-						$('body').addClass('fixed');
+						default_pop('로그인 먼저 해주세요')
 					}
 					// 숫자 0되면서 딤드 처리, 버튼 교체
-					if (currentCount == 0) {
+					if (downCountMinus == 0) {
 						couponWrap.addClass('off');
 					}
 				}
@@ -190,13 +179,6 @@
 				})
 			}
 		});
-		// 쿠폰 성공 팝업 클로즈
-		$('.btn_close').click(()=>{
-			$('.pop').slideUp(400);
-			setTimeout(()=>{
-				$('body').removeClass('fixed');
-			}, 400);
-		})
 	});
 
 </script>

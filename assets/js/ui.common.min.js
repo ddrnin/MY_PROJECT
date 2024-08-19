@@ -136,7 +136,8 @@ $(document).ready(function() {
 			majorSearch();
 		}
 	});
-	// 대학교 검색 결과에서 선택 버튼 클릭 시 실행
+	// 대학교 검색 결과에서 선택 버튼 클릭
+	$(document).on('click', '.select_univ', selectUniv);
 	function selectUniv() {
 		const selectedUniv = $(this).siblings('.univ_name').text();
 		// input에 대학 이름 저장
@@ -153,9 +154,12 @@ $(document).ready(function() {
 		if (typeof univRemove01 === 'function') {
 			univRemove01();
 		}
+		// input major에 focus
+		majorInput.focus();
 	}
-	$(document).on('click', '.select_univ', selectUniv);
-	// 학과 검색 결과에서 선택 버튼 클릭 시 실행
+
+	// 학과 검색 결과에서 선택 버튼 클릭
+	$(document).on('click', '.select_major', selectMajor);
 	function selectMajor() {
 		const selectedMajor = $(this).siblings('.major_name').text();
 		// input에 학과 이름 저장
@@ -173,12 +177,24 @@ $(document).ready(function() {
 			univRemove02();
 		}
 	}
-	$(document).on('click', '.select_major', selectMajor);
+
 	// join영역에 값 전달 위한 전역 변수 선언
 	let univ_val = '';
 	let major_val = '';
-	// 입력 완료 버튼 클릭 시  
-	// 팝업
+
+	// 입력 완료 버튼
+	$('.btn_comp').on('click', () => {
+		window.dataResp();
+		if (data.resp_cd == "55") {
+			confirm_pop('입력하시면 변경할 수 없습니다.<br>입력하시겠습니까?');
+		} else if (data.resp_cd == "66") {
+			default_pop('학교명을 입력해 주세요!');
+		} else if (data.resp_cd == "77") {
+			default_pop('학과명을 입력해 주세요!');
+		} else if (data.resp_cd == "88") {
+			default_pop('학교와 학과를 입력해 주세요!');
+		}
+	});
 	window.data = {
 		resp_cd: "00"
 	};
@@ -193,36 +209,10 @@ $(document).ready(function() {
 			data.resp_cd = "88";
 		}
 	};
-	$('.btn_comp').on('click', () => {
-		window.dataResp();
-		if (data.resp_cd == "55") {
-			confirm_pop('입력하시면 변경할 수 없습니다.<br>입력하시겠습니까?');
-		} else if (data.resp_cd == "66") {
-			open_pop('학교명을 입력해 주세요!');
-		} else if (data.resp_cd == "77") {
-			open_pop('학과명을 입력해 주세요!');
-		} else if (data.resp_cd == "88") {
-			open_pop('학교와 학과를 입력해 주세요!');
-		}
-	});
-	const reset_pop = () => {
-		$('.btn_univ_search').prop('disabled', false);
-		univInput.prop('disabled', false);
-		univInput.val('');
-		$('.btn_major_search').prop('disabled', false);
-		majorInput.prop('disabled', false);
-		majorInput.val('');
-	}
-	$('.btn_reset').on('click', function(){
-		if(univInput.prop('disabled')){
-			default_pop('초기화 되었습니다.')
-		} else if (majorInput.prop('disabled')){
-			default_pop('초기화 되었습니다.')
-		} 
-	})
+	// 학교/학과 입력 확정 버튼
 	$('.btn_confirm').on('click', () => {
 		close_pop();
-		open_pop('입력이 완료되었습니다!');
+		default_pop('입력이 완료되었습니다!');
 		$('.btn_comp').prop('disabled', true);
 		$('.btn_reset').prop('disabled', true);
 		// 값 join영역에 전달
@@ -231,9 +221,27 @@ $(document).ready(function() {
 		// 응원 횟수 핸들러
 		$('.univ_name').addClass('entered');
 	});
-	$('.btn_reset').on('click', () => {
+
+	// 학교/학과 다시 선택 버튼
+	$('.btn_reset').on('click', function(){
+		if(univInput.prop('disabled')){
+			default_pop('초기화 되었습니다.')
+		} else if (majorInput.prop('disabled')){
+			default_pop('초기화 되었습니다.')
+		} else {
+			default_pop('학교와 학과가 선택되지 않았습니다.')
+		}
 		reset_pop();
-	});
+	})
+	const reset_pop = () => {
+		$('.btn_univ_search').prop('disabled', false);
+		univInput.prop('disabled', false);
+		univInput.val('');
+		$('.btn_major_search').prop('disabled', false);
+		majorInput.prop('disabled', false);
+		majorInput.val('');
+	}
+
 	$('.btn_close').on('click', () => {
 		close_pop();
 	});
@@ -241,11 +249,11 @@ $(document).ready(function() {
 	// join bell 영역
 	const countJoin = $('.join_area .btn_wrap .count');// 응원 한 횟수
 	let countText = parseInt(countJoin.text());// 응원 한 횟수 정수로
-	const countMy = $('.join_area .btn_wrap .countMy');// 응원 가능 횟수
-	let countMyVal = parseInt(countMy.text().replace(/,/g, ''));// 응원 가능 횟수 정수로 / ,제거하고 계산
+	const downCount = $('.join_area .btn_wrap .countMy');// 응원 가능 횟수
+	let downCountMinus = parseInt(downCount.text().replace(/,/g, ''));// 응원 가능 횟수 정수로 / ,제거하고 계산
 	$('.btn_join').on('click', () => {
 		if ($('.join_area .univ_name').hasClass('entered')) {
-			if(countMyVal > 0){
+			if(downCountMinus >= 1){
 				// 응원 한 횟수 1씩 증가
 				countText++;
 				countJoin.text(countText.toLocaleString());
@@ -255,39 +263,39 @@ $(document).ready(function() {
 				$('.btn_join').addClass('clicked');
 				default_pop('응원 횟수가 증가하였습니다.')
 				// 응원 가능 횟수 1씩 감소
-				countMyVal--;
-				countMy.text(countMyVal.toLocaleString()); // 감소된 값을 다시 설정 천단위, 생성
+				downCountMinus--;
+				downCount.text(downCountMinus.toLocaleString()); // 감소된 값을 다시 설정 천단위, 생성
 			} else {
-				default_pop('응원 가능 횟수가 부족합니다')
+				default_pop('응원 가능 횟수가 부족합니다.')
 			}
 		} else {
-			default_pop('학교와 학과를 먼저 입력해주세요')
+			default_pop('학교와 학과를 먼저 입력해주세요.')
 		}
 	})
 });
 
-// pop
-const open_pop = (message) => {
+
+// 팝업 함수 모음
+
+// 팝업 닫힘 버튼
+const close_pop = () => {
+	$('body').removeClass('fixed');
+	$('.confirm_pop').slideUp();
+	$('.one_btn_pop').slideUp();
+}
+// 기본 버튼 1개 팝업
+const default_pop = (message) => {
 	$('body').addClass('fixed');
-	$('.alert_pop').fadeIn();
-	$('.alert_pop .pop_tit').html(message);
-};
+	$('.one_btn_pop').slideDown();
+	$('.one_btn_pop .pop_tit').html(message);
+}
+// 버튼 2개 팝업
 const confirm_pop = (message) => {
 	$('body').addClass('fixed');
 	$('.confirm_pop').fadeIn();
 	$('.confirm_pop .pop_tit').html(message);
 }
-const close_pop = () => {
-	$('body').removeClass('fixed');
-	$('.alert_pop').fadeOut();
-	$('.confirm_pop').fadeOut();
-	$('.default_pop').fadeOut();
-}
-const default_pop = (message) => {
-	$('body').addClass('fixed');
-	$('.default_pop').fadeIn();
-	$('.default_pop .pop_tit').html(message);
-}
+
 // function open_pop(message){
 // 	$('body').addClass('fixed');
 // 	$('.alert_pop').fadeIn();

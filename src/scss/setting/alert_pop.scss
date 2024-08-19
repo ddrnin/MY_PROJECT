@@ -1,5 +1,4 @@
-.alert_pop,
-.default_pop,
+.one_btn_pop,
 .confirm_pop{
 	display: none;
 	position: fixed;
@@ -27,6 +26,8 @@
 		}
 		.pop_tit{
 			padding: 20px 0px;
+			text-align: center;
+			word-break: break-all;
 		}
 		.btn_confirm{
 			width: 49%;
