@@ -26,12 +26,14 @@ const dir = {
 const src = {
 	html: dir.src + 'html/',
 	css: dir.src + 'scss/',
-	js: dir.src + 'js/'
+	js: dir.src + 'js/',
+	// img: dir.src + 'html/**/img/'
 }
 const dist = {
 	html: dir.dist + 'html/',
 	css: dir.dist + 'assets/css/',
-	js: dir.dist + 'assets/js/'
+	js: dir.dist + 'assets/js/',
+	// img: dir.dist + 'assets/img/'
 }
 
 
@@ -41,6 +43,7 @@ gulp.task('html', function(){
 		src.html + '*.html',
 		src.html + '**/*.html',
 		src.html + '**/*.css',
+		// src.img + "**/*",
 		'!' + src.html + '_partials/*.html'
 	])
 	.pipe(fileinclude({
@@ -53,6 +56,7 @@ gulp.task('html', function(){
 	}))
 	// 처리된 html파일을 /html에 저장
 	.pipe(gulp.dest(dist.html))
+	// .pipe(gulp.dest(dist.img))
 	.pipe(browserSync.reload({ stream: true }))
 });
 
@@ -92,6 +96,17 @@ gulp.task('js', function(){
 	.pipe(browserSync.reload({ stream: true }));
 });
 
+// // img 처리
+// gulp.task('img', function(){
+// 	return gulp.src([
+// 		src.img + '*.*',
+// 		src.img + '/**/*.*',
+// 		src.img + '/**/**/*.*'
+// 	])
+// 	.pipe(gulp.dest(dist.img))
+// 	.pipe(browserSync.reload({ stream: true }));
+// })
+
 gulp.task('watch', function(){
 	browserSync.init({
 		port: 3009,
@@ -99,10 +114,10 @@ gulp.task('watch', function(){
 			index: "./html/status/status.html"
 		}
 	});
-
 	watch(src.html, gulp.series('html'));
 	watch(src.css, gulp.series('sass'));
 	watch(src.js, gulp.series('js'));
+	// watch(src.img, gulp.series('img'));
 });
 
 // default - 터미널에 gulp 명령어 입력하면 실행되는 작업. 여기서는 watch가 실행

@@ -1,0 +1,79 @@
+.swiper_stepper {
+	overflow: hidden;
+	background:gray;
+	margin: 50px;
+	.dosirak_area{
+		margin: 0 auto;
+		width: 80%;
+		height: 200px;
+		background: gray;
+		.dosirak{
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			width: 100%;
+			height: 100%;
+			li{
+				background: purple;
+				border: 1px solid gray;
+				font-size: 20px;
+			}
+		}
+	}
+	.stepper_swiper{
+		overflow: visible;
+		margin-top: 100px;
+		.swiper-slide{
+			ul{
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				li{
+					margin: 10px;
+					label{
+						div{
+							font-size: 20px;
+							padding: 50px 0;
+							background: yellowgreen;
+						}
+					}
+					input{
+						display: none;
+					}
+					input:checked + div{
+						background: yellow;
+					}
+				}
+			}
+		}
+		// 네비게이션
+		.swiper-button-next,
+		.swiper-button-prev{
+			top: -30%;
+			color: yellow
+		}
+		.swiper-button-next{
+			pointer-events: none;
+			opacity: 0.5;
+			&.on{
+				pointer-events: unset;
+				opacity: 1;
+			}
+		}
+		// 페이지네이션
+		.swiper-pagination{
+			bottom: 110%;
+		}
+		.swiper-pagination-bullet{
+			background-color: yellow;
+			width: 30px;
+			height: 30px;
+		}
+		.swiper-pagination-bullet.active {
+			opacity: unset;
+			background-color: yellow; /* active된 bullet의 배경 색상 */
+		}
+		.swiper-button-disabled{
+			pointer-events: none !important;
+			opacity: 0 !important;
+		}
+	}
+}

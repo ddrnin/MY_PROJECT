@@ -311,3 +311,10 @@ const confirm_pop = (message) => {
 // 		pop_pop('removeClass');
 // 	}
 // });
+
+$('.overpower_coupon .btn_wrap button.off').each(function() {
+	$(this).prop('disabled', true);
+
+	const buttonClass = $(this).attr('class').split(' ')[0];
+	$(this).find('img').attr('src', './img/'+ buttonClass +'_off.png')
+});

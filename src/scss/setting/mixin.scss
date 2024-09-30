@@ -9,3 +9,36 @@
 		@content;
 	}
 }
+
+@mixin main_font($font-size) {
+	font-family: 'neurimboGothicRegular';
+	font-size: $font-size;
+}
+@mixin text_font($font-size) {
+	font-family: 'Pretendard-Medium';
+	font-size: $font-size;
+}
+@mixin text_font2($font-size) {
+	font-family: 'Pretendard-ExtraLight';
+	font-size: $font-size;
+}
+@mixin text_font3($font-size) {
+	font-family: 'Pretendard-Thin';
+	font-size: $font-size;
+}
+@mixin text_font4($font-size) {
+	font-family: 'Pretendard-Regular';
+	font-size: $font-size;
+}
+@mixin text_font5($font-size) {
+	font-family: 'Pretendard-Light';
+	font-size: $font-size;
+}
+@mixin text_font6($font-size) {
+	font-family: 'Pretendard-SemiBold';
+	font-size: $font-size;
+}
+@mixin text_font7($font-size) {
+	font-family: 'Pretendard-Bold';
+	font-size: $font-size;
+}

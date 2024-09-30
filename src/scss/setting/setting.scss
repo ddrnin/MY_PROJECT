@@ -66,6 +66,7 @@ button
 body{
 	overflow-x: hidden;
 	background: rgb(89, 89, 107);
+	text-align: center;
 	&.fixed{
 		width: 100%;
 		overflow: hidden;
@@ -82,7 +83,7 @@ body{
 	}
 }
 img{
-    width: 100%;
+    // width: 100%;
     display: block;
 }
 .blind{
