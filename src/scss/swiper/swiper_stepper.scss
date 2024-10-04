@@ -13,6 +13,9 @@
 			width: 100%;
 			height: 100%;
 			li{
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				background: purple;
 				border: 1px solid gray;
 				font-size: 20px;
@@ -31,7 +34,7 @@
 					label{
 						div{
 							font-size: 20px;
-							padding: 50px 0;
+							padding: 20px 0;
 							background: yellowgreen;
 						}
 					}
@@ -41,13 +44,16 @@
 					input:checked + div{
 						background: yellow;
 					}
+					input:disabled + div{
+						opacity: .5;
+					}
 				}
 			}
 		}
 		// 네비게이션
 		.swiper-button-next,
 		.swiper-button-prev{
-			top: -30%;
+			top: -20%;
 			color: yellow
 		}
 		.swiper-button-next{
@@ -60,12 +66,48 @@
 		}
 		// 페이지네이션
 		.swiper-pagination{
-			bottom: 110%;
+			bottom: 100%;
 		}
 		.swiper-pagination-bullet{
+			position: relative;
 			background-color: yellow;
-			width: 30px;
-			height: 30px;
+			width: 50px;
+			height: 50px;
+			&::before{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 100%;
+				height: 100%;
+				font-size: 14px;
+				line-height: 1;
+			}
+		}
+		.swiper-pagination-bullet:nth-child(1){
+			&::before {
+				content: '밥';
+			}
+		}
+		.swiper-pagination-bullet:nth-child(2){
+			&::before {
+				content: '메인반찬';
+			}
+		}
+		.swiper-pagination-bullet:nth-child(3){
+			&::before {
+				content: '서브반찬';
+			}
+		}
+		.swiper-pagination-bullet:nth-child(4){
+			&::before {
+				content: '채소/김치';
+			}
+		}
+		.swiper-pagination-bullet:nth-child(5){
+			&::before {
+				content: '완료';
+			}
 		}
 		.swiper-pagination-bullet.active {
 			opacity: unset;
@@ -74,6 +116,20 @@
 		.swiper-button-disabled{
 			pointer-events: none !important;
 			opacity: 0 !important;
+		}
+	}
+	.pop_area{
+		.toast_pop{
+			display: none;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 9999;
+			padding: 10px;
+			font-size: 14px;
+			background: #000;
+			color: #fff;
 		}
 	}
 }
