@@ -49,3 +49,34 @@
 		}
 	}
 }
+.toast_pop{
+	position: fixed;
+	bottom: 124px;
+	left: 50%;
+	transform: translate(-50%, 10px);
+	z-index: 900;
+	width: 80%;
+	height: 40px;
+	padding: 0 20px;
+	border-radius: 20px;
+	background: #111;
+	transition: opacity .3s, visibility .3s, transform .3s;;
+	opacity:0; 
+	overflow:hidden; 
+	visibility:hidden;
+	&.active{
+		opacity:1; 
+		visibility:visible;
+		transform: translate(-50%, 0);
+	}
+	p{
+		line-height: 40px;
+		font-weight: bold;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		color: #fff;
+		font-size: 14px;
+
+	}
+}

@@ -9,7 +9,6 @@
 		@content;
 	}
 }
-
 @mixin main_font($font-size) {
 	font-family: 'neurimboGothicRegular';
 	font-size: $font-size;

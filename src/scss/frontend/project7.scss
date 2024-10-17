@@ -1,0 +1,281 @@
+.project7{
+	@include text_font4(20px);
+	img{
+		width: 100%;
+		display: block;
+	}
+	.evt_section{
+		position: relative;
+	}
+	.dosirak_area{
+		position: relative;
+		padding-top: 16%;
+		background:#0092ee;
+		.dosirak_tray{
+			position:relative;
+			margin:0 16.93%;
+			.dosirak{
+				position:absolute;
+				top:0;
+				left:0;
+				width:90.94%;
+				height:86.13%; 
+				margin:4.03% 4.23% 5.84% 4.33%;
+				li{
+					display:flex; 
+					align-items:center;
+					justify-content:center; 
+					position:absolute;
+					&:nth-child(1){
+						bottom:0; 
+						left:0; 
+						width:53.52%; 
+						height:55.52%;
+					}
+					&:nth-child(2){
+						bottom:59%; 
+						left:1%; 
+						width:30.12%; 
+						height:40.38%;
+					}
+					&:nth-child(3){
+						bottom:59%; 
+						left:35%; 
+						width:30.12%; 
+						height:40.38%;
+					}
+					&:nth-child(4){
+						bottom:59%; 
+						left:70%; 
+						width:30.12%; 
+						height:40.38%;
+					}
+					&:nth-child(5){
+						bottom:29%; 
+						right:22%; 
+						width:24%;
+					}
+					&:nth-child(6){
+						bottom:29%; 
+						right:-1%; 
+						width:24%;
+					}
+					&:nth-child(7){
+						bottom:0%;
+						right:22%; 
+						width:22%;
+					}
+					&:nth-child(8){
+						bottom:0%; 
+						right:-1%; 
+						width:22%;
+					}
+				}
+			}
+		}
+		.swiper_area{
+			.dosirak_swiper{
+				margin:0; 
+				padding-bottom:14%;
+				.swiper-slide{
+					&.step01{
+						.slide_wrap{
+							padding:10.67% 7.6% 0;
+						}
+					}
+					&.step05{
+						.slide_wrap{
+							padding:4% 5.34%;
+							ul{
+								margin:7.05% 0 1%;
+								li{
+									height:95px; 
+									border-radius:10px; 
+									background:#fff;
+									.img_wrap{
+										margin-top:7.3%; height:16.9%;
+									}
+									.list_wrap{
+										display:flex; 
+										flex-direction:column; 
+										align-items:center; 
+										justify-content:center; 
+										height:70%;
+									}
+									p{
+										font-size:15px; 
+										font-weight:400; 
+										line-height:1.2;
+									}
+								}
+							}
+						}
+						.btn_project7{
+							margin:5.6% 20.93% 0;
+						}
+					}
+					.slide_wrap{
+						padding:4% 7.6% 0; 
+						margin:0 4.26%; 
+						border:1.5px solid #fff; 
+						border-radius:20px; 
+						box-sizing:border-box; 
+						background:#96D2F8;
+						ul{
+							display:grid; 
+							grid-template-columns:1fr 1fr; 
+							gap:10px; 
+							margin:7.05% 0 14.44%;
+							li{
+								label{
+									display:flex; 
+									justify-content:center; 
+									align-items:center; 
+									cursor:pointer;
+									input{
+										display:none;
+										&:disabled + .name{
+											opacity:0.5;
+										}
+										&:checked + .name {
+											position:relative;
+											background:#fff400; 
+											color:#0092ee;
+										}
+									}
+									.name{
+										width:100%; 
+										padding:6.95% 0; 
+										border-radius:5px; 
+										font-size:15px; 
+										font-weight:bold; 
+										color:#fff; 
+										background:#0092ee; 
+										z-index:2;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.swiper-button-next,
+	.swiper-button-prev{
+		top:60%; 
+		transform:translateY(-50%); 
+		width:30px; 
+		height:49px; 
+		color:#fff;
+		&::after{
+			content:''; 
+			width:100%; 
+			height:100%; 
+			background-image:url('../../../assets/img/project7/project7_next.png'); 
+			background-size:contain;
+			background-repeat: no-repeat;
+		}
+	}
+	.swiper-button-prev{
+		left:-18%;
+		&::after{
+			background-image:url('../../../assets/img/project7/project7_prev.png'); 
+		}
+	}
+	.swiper-button-next{
+		right:-18%; 
+		pointer-events:none; 
+		opacity:0.5;
+		&.on{
+			pointer-events:unset; 
+			opacity:1;
+		}
+	}
+	.swiper-button-disabled{
+		pointer-events:none !important; 
+		opacity:0 !important;
+	}
+	.swiper-pagination{
+		position:relative; 
+		margin-bottom:5.67%;
+		bottom: unset !important;
+		.swiper-pagination-bullet{
+			position:relative; 
+			width:16%; 
+			height:45px; 
+			opacity:unset; 
+			border:2px solid #fff; 
+			border-radius:22px; 
+			box-sizing:border-box; 
+			background:#d1f4ff;
+			&:nth-child(1){
+				margin-left:unset;
+				&::before{
+					content:'밥';
+				}
+			}
+			&:nth-child(2){
+				&::before{
+					content:'메인\A반찬';
+				}
+			}
+			&:nth-child(3){
+				&::before{
+					content:'서브\A반찬';
+				}
+			}
+			&:nth-child(4){
+				&::before{
+					content:'채소\A김치';
+				}
+			}
+			&:nth-child(5){
+				margin-right:unset;
+				&::before{
+					content:'완성';
+				}
+				&::after{
+					display: none;
+				}
+			}
+			&.swiper-pagination-bullet-active{
+				background:#fff400;
+			}
+			&.active{
+				background:#fff400;
+			}
+			&::before{
+				display:flex;
+				align-items:center; 
+				justify-content:center; 
+				position:absolute; 
+				top:50%; 
+				left:50%; 
+				transform:translate(-50%, -50%); 
+				width:100%; 
+				height:100%; 
+				font-size:13px; 
+				font-weight:bold; 
+				line-height:1.2; 
+				white-space:pre;
+			}
+			&::after{
+				content:''; 
+				position:absolute; 
+				top:50%; 
+				left:100%; 
+				transform:translateY(-50%); 
+				width:10px; 
+				height:3px; 
+				background:#fff;
+			}
+		}
+	}
+	.btn_info{
+		position:absolute; 
+		bottom:11.16%; 
+		left:20.93%; 
+		right:20.93%;
+	}
+}

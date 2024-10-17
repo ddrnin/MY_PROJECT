@@ -66,9 +66,67 @@
 			background-color: yellow;
 			width: 30px;
 			height: 30px;
+			bottom: 100%;
+			&::before{
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: 0%;
+				transform: translateY(-50%);
+				width: 100%;
+				height: 3px;
+				background-color: #fff;
+			}
+		}
+		.swiper-pagination-bullet{
+			position: relative;
+			background-color: skyblue;
+			width: 50px;
+			height: 50px;
+			opacity: unset;
+			&::before{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 100%;
+				height: 100%;
+				font-size: 14px;
+				line-height: 1;
+			}
+			&.swiper-pagination-bullet-active{
+				background-color: yellow;
+			}
+		}
+		.swiper-pagination-bullet:nth-child(1){
+			&::before {
+				content: '밥';
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+		.swiper-pagination-bullet:nth-child(2){
+			&::before {
+				content: '메인반찬';
+			}
+		}
+		.swiper-pagination-bullet:nth-child(3){
+			&::before {
+				content: '서브반찬';
+			}
+		}
+		.swiper-pagination-bullet:nth-child(4){
+			&::before {
+				content: '채소/김치';
+			}
+		}
+		.swiper-pagination-bullet:nth-child(5){
+			&::before {
+				content: '완료';
+			}
 		}
 		.swiper-pagination-bullet.active {
-			opacity: unset;
 			background-color: yellow; /* active된 bullet의 배경 색상 */
 		}
 		.swiper-button-disabled{

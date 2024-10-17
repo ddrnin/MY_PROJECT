@@ -62,6 +62,8 @@ button
 {
 	border: none;
 	cursor: pointer;
+	-webkit-tap-highlight-color:transparent;
+	background: none;
 }
 body{
 	overflow-x: hidden;

@@ -1,14 +1,17 @@
 @use '../setting/mixin.scss' as *;
+
 body {
-	--bg-color: #000;
-	background-color: var(--bg-color);
-	@include main_font(20px);
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-	// cursor: none;
+	&.portfolio{
+		--bg-color: #000;
+		background-color: var(--bg-color);
+		@include main_font(20px);
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		// cursor: none;
+	}
 }
 ::-webkit-scrollbar {
 	display: none;
