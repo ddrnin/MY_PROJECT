@@ -10,7 +10,7 @@ import sourcemaps from 'gulp-sourcemaps';
 // 파일 이름을 변경
 import rename from 'gulp-rename';
 // css 파일 압축
-// import cssmin from 'gulp-cssmin';
+import cssmin from 'gulp-cssmin';
 // 변경사항을 감지 - 변경될 때마다 특정 작업 실행
 import watch from 'gulp-watch';
 // 벤더 프리픽서 - css 크로스브라우징 자동으로 되도록 속성 추가해줌 ex)'-webkit-'
@@ -75,7 +75,7 @@ gulp.task('sass', function(){
 	.pipe(sass(scssOption).on('error', sass.logError))
 	.pipe(autoprefixer())
 	.pipe(sourcemaps.write('./'))
-	// .pipe(cssmin())
+	.pipe(cssmin())
 	// 처리된 sass파일을 assets/css/에 1차 저장
 	.pipe(gulp.dest(dist.css))
 	// .pipe(rename('style.min.css'))
