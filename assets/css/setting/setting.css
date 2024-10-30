@@ -1,1 +1,117 @@
-.wrap,a,ol li,ul li{display:inline-block}a,p{text-decoration:none}*{padding:0;margin:0;box-sizing:border-box;font-size:12px;line-height:1;vertical-align:top}a,div,h1,h2,h3,h4,ol,ol li,p,span,ul,ul li{font-size:inherit}ol,ul{list-style:none}h1,h2,h3,h4,span{font-weight:inherit}a{color:unset}body{overflow-x:hidden;background:#59596b;text-align:center}.wrap{width:1000px}.flex{display:flex;justify-content:space-between;align-items:center;align-content:center}input:focus{outline:0}button,input[type=submit]{border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;background:0 0}body.fixed{width:100%;overflow:hidden}body.fixed::after{content:"";position:fixed;background-color:rgba(0,0,0,.4);left:0;top:0;height:100vh;width:100%;z-index:1000}img{display:block}.blind{width:0;height:0;overflow:hidden}.layout,.layoutM{width:100%;margin:0 auto}.layoutM{max-width:540px;min-width:320px}
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 1;
+  vertical-align: top;
+  /*	outline: 1px solid #999;*/
+}
+
+ul,
+ol {
+  list-style: none;
+  font-size: inherit;
+}
+
+ul li,
+ol li {
+  display: inline-block;
+  font-size: inherit;
+}
+
+span,
+h1,
+h2,
+h3,
+h4 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  display: inline-block;
+  color: unset;
+  text-decoration: none;
+  font-size: inherit;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.wrap {
+  display: inline-block;
+  width: 1000px;
+}
+
+p {
+  text-decoration: none;
+  font-size: inherit;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+}
+
+div {
+  font-size: inherit;
+}
+
+input:focus {
+  outline: none;
+}
+
+input[type=submit],
+button {
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  background: none;
+}
+
+body {
+  overflow-x: hidden;
+  background: rgb(89, 89, 107);
+  text-align: center;
+}
+body.fixed {
+  width: 100%;
+  overflow: hidden;
+}
+body.fixed::after {
+  content: "";
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 1000;
+}
+
+img {
+  display: block;
+}
+
+.blind {
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+.layoutM {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 540px;
+  min-width: 320px;
+}
+
+.layout {
+  width: 100%;
+  margin: 0 auto;
+}
+/*# sourceMappingURL=setting.css.map */
