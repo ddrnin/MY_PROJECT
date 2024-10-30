@@ -1,1 +1,88 @@
-.confirm_pop,.one_btn_pop{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:88%;max-width:350px;padding:40px 20px;border-radius:20px;font-size:16px;font-weight:700;background:#fff;z-index:9999}.confirm_pop .cont,.one_btn_pop .cont{display:flex;flex-direction:column;justify-content:center;align-items:center}.confirm_pop .cont .btn_wrap2,.one_btn_pop .cont .btn_wrap2{display:flex;align-items:center;justify-content:space-between;width:80%}.confirm_pop .cont .pop_tit,.one_btn_pop .cont .pop_tit{padding:20px 0;text-align:center;word-break:break-all}.confirm_pop .cont .btn_confirm,.one_btn_pop .cont .btn_confirm{width:49%;padding:15px 20px;border:1px solid #3fd31a;background:#ffecdc;border-radius:10px;font-size:16px;font-weight:700}.confirm_pop .cont .btn_close,.one_btn_pop .cont .btn_close{width:49%;padding:15px 20px;border:1px solid #ffa356;background:#ffecdc;border-radius:10px;font-size:16px;font-weight:700}.toast_pop{position:fixed;bottom:124px;left:50%;transform:translate(-50%,10px);z-index:900;width:80%;height:40px;padding:0 20px;border-radius:20px;background:#111;transition:opacity .3s,visibility .3s,transform .3s;opacity:0;overflow:hidden;visibility:hidden}.toast_pop.active{opacity:1;visibility:visible;transform:translate(-50%,0)}.toast_pop p{line-height:40px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff;font-size:14px}
+.one_btn_pop,
+.confirm_pop {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 88%;
+  max-width: 350px;
+  padding: 40px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  background: #fff;
+  z-index: 9999;
+}
+.one_btn_pop .cont,
+.confirm_pop .cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.one_btn_pop .cont .btn_wrap2,
+.confirm_pop .cont .btn_wrap2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+}
+.one_btn_pop .cont .pop_tit,
+.confirm_pop .cont .pop_tit {
+  padding: 20px 0px;
+  text-align: center;
+  word-break: break-all;
+}
+.one_btn_pop .cont .btn_confirm,
+.confirm_pop .cont .btn_confirm {
+  width: 49%;
+  padding: 15px 20px;
+  border: 1px solid #3fd31a;
+  background: #ffecdc;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.one_btn_pop .cont .btn_close,
+.confirm_pop .cont .btn_close {
+  width: 49%;
+  padding: 15px 20px;
+  border: 1px solid #ffa356;
+  background: #ffecdc;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.toast_pop {
+  position: fixed;
+  bottom: 124px;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  z-index: 900;
+  width: 80%;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 20px;
+  background: #111;
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+  opacity: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+.toast_pop.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+.toast_pop p {
+  line-height: 40px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 14px;
+}
+/*# sourceMappingURL=alert_pop.css.map */

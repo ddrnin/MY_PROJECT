@@ -1,1 +1,45 @@
-.univ_begin .input_area .form_wrap .input_set.on .form_txt input[type=text]{border-radius:5px 5px 0 0}.univ_begin .input_area .form_wrap .input_set.on .list{display:block}.univ_begin .input_area .form_wrap .input_set .list{display:none;position:absolute;top:calc(100% - 1px);left:0;width:calc(100% - 57px);max-height:159px;border:1px solid #acacac;border-radius:0 0 5px 5px;overflow-y:scroll;background:#fff;z-index:1}.univ_begin .input_area .form_wrap .input_set .list li{display:flex;justify-content:space-between;align-items:center;margin:0 8px;height:39px;border-bottom:1px dashed #ccc}.univ_begin .input_area .form_wrap .input_set .list li:last-child{border-bottom:unset}.univ_begin .input_area .form_wrap .input_set .list li p{flex:1;font-size:14px;text-align:left;white-space:normal}.univ_begin .input_area .form_wrap .input_set .list li button{font-size:13px;border-radius:5px;width:34px;height:24px;color:#fff;background:#464646}
+.univ_begin .input_area .form_wrap .input_set.on .form_txt input[type=text] {
+  border-radius: 5px 5px 0 0;
+}
+.univ_begin .input_area .form_wrap .input_set.on .list {
+  display: block;
+}
+.univ_begin .input_area .form_wrap .input_set .list {
+  display: none;
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  width: calc(100% - 57px);
+  max-height: 159px;
+  border: 1px solid #acacac;
+  border-radius: 0 0 5px 5px;
+  overflow-y: scroll;
+  background: #fff;
+  z-index: 1;
+}
+.univ_begin .input_area .form_wrap .input_set .list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 8px;
+  height: 39px;
+  border-bottom: 1px dashed #ccc;
+}
+.univ_begin .input_area .form_wrap .input_set .list li:last-child {
+  border-bottom: unset;
+}
+.univ_begin .input_area .form_wrap .input_set .list li p {
+  flex: 1;
+  font-size: 14px;
+  text-align: left;
+  white-space: normal;
+}
+.univ_begin .input_area .form_wrap .input_set .list li button {
+  font-size: 13px;
+  border-radius: 5px;
+  width: 34px;
+  height: 24px;
+  color: #fff;
+  background: #464646;
+}
+/*# sourceMappingURL=begin_univ_v2.css.map */
