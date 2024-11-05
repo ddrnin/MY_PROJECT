@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>연습</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+
+</head>
+<body class="dark">
+	<button class="btn_login">로그인 하기</button>
+
+	<div class="modal_bg">
+		<div class="modal_wrap">
+			<h4>로그인하쇼</h4>
+			<form action="server.html">
+				<div class="my-3">
+					<input type="text" class="form_control" id="id" placeholder="아이디를 입력하세요" autocomplete="username" >
+					<p class="id_notice">1</p>
+				</div>
+				<div class="my-3">
+					<input type="password" class="form_control" id="password" placeholder="비밀번호를 입력하세요" autocomplete="current-password">
+					<p id="password_notice">비밀번호를 6자 이상 입력해주세요.</p>
+				</div>
+				<div class="btn_wrap">
+					<button type="submit" class="btn btn_primary" id="send">전송</button>
+					<button type="button" class="btn btn_danger" id="btn_close">닫기</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<section class="game369_area">
+		<h3>369 게임!</h3>
+		<input type="text" placeholder="숫자를 입력하세요" class="game_number">
+		<button type="button" id="btn_369">클릭!</button>
+	</section>
+
+	<section class="dark_mode_area">
+		<p>DM Shop</p>
+		<span class="btn_dark">Dark 🌚</span>
+	</section>
+	<script>
+		$('.btn_login').on('click', function(){
+			$('.modal_bg').addClass('show');
+		});
+		// modal창 
+		$('#btn_close').on('click', function(){
+			$('.modal_bg').removeClass('show')
+		})
+
+		// form
+		$('form').on('submit', function(e){
+			if ($('#id').val().length === 0 && $('#password').val().length === 0){
+				alert('아이디와 비밀번호를 입력해주세요');
+				e.preventDefault();
+			} else if($('#id').val().length === 0){
+				alert('아이디를 입력해주세요');
+				e.preventDefault();
+				// return false;
+			} else if ($('#password').val().length === 0){
+				alert('비밀번호를 입력해주세요');
+				return false;
+			} else if ($('#password').val().length < 6){
+				alert('비밀번호를 6자 이상 입력해주세요');
+				return false;
+			} else if (!/\S+@\S+\.\S+/.test($('#id').val())){
+				alert('이메일 형식에 맞게 작성해주세요');
+				return false;
+			}
+		});
+
+		$('#password').on('input', function(){// input - input에 입력 삭제 등 변화 생기면 발동
+			if($('#password').val().length < 6 && $('#password').val().length > 0){
+				$('#password_notice').addClass('on')
+			} else {
+				$('#password_notice').removeClass('on')
+			}
+		})
+		$('#id').on('change', function(){// change - focus를 잃을때 발동
+			// alert('1')
+		})
+		// && = and / || = or
+
+		// 369 게임
+		$('#btn_369').on('click', function(){
+			var number = parseInt($('.game_number').val(), 10);
+			// var number = parseInt($('.game_number').val(), 10) % 10; / % 10은 1일 자리만 반환
+			if(number % 9 === 0){
+				console.log('박수박수')
+			} else if(number % 3 === 0){
+				console.log('박수')
+			} else if(number % 3 !== 0){
+				console.log('통고')
+			}
+		});
+		// 369 게임 - 끝자리 369
+		$('#btn_369').on('click', function(){
+			var number = parseInt($('.game_number').val().slice(-1), 10);
+			if(number % 3 === 0 && number !== 0){
+				console.log('박수')
+			} else {
+				console.log('통과')
+			};
+		});
+
+		// 시험 합격 기준
+		function test(a , b){
+			if(a + b >= 120 && a >= 40 && b >= 40){
+				console.log('합격')
+			} else if (a + b < 120 || a < 40 || b < 40){
+				console.log('불합격')
+			} 
+		}
+		test(50, 50);
+
+		// // 다크모드 버튼01
+		// $('.btn_dark').on('click', function(){
+		// 	if($('.btn_dark').hasClass('light')){
+		// 		$('.btn_dark').text('Dark 🌚').removeClass('light')
+		// 	} else{
+		// 		$('.btn_dark').text('Light 🌞').addClass('light')
+		// 	}
+		// });
+		
+		// 다크모드 버튼02
+		var clickCount = 0
+		$('.btn_dark').on('click', () => {
+			clickCount ++;
+			if(clickCount % 2 !== 0){
+				$('.btn_dark').html('Light 🌞');
+			} else {
+				$('.btn_dark').html('Dark 🌚');
+			}
+			console.log(clickCount)
+		})
+
+		// // 변수의 개념 - 1. 선언 / 2. 할당 / 3. 범위
+		// 1.선언
+		// var 이름;
+		// 2.할당
+		// var 성 = 'kim';
+		// var 성 = 'jeong'; 재할당
+		// 3.범위
+		// function 함수(){
+		// 	var 이름 = 'kim';
+		// }
+		// console.log(이름)
+		// 변수 종류
+		// let - 재선언x/재할당o/범위{}중괄호 안에서만
+		// const - 재선언x/재할당x/범위{} (변하면 안되는 값에 사용)
+		// var - 재선언o/재할당o/범위funtion 안에서만
+
+	</script>
+</body>
+</html>
