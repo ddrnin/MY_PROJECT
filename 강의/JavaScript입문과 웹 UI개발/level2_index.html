@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>레벨2</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+</head>
+<body>
+	<!-- 퀴즈 -->
+	<!-- <p>태조 이성계가 태어난 년도는?</p>
+	<input type="text" id="answer">
+	<button id="send_answer">제출</button> -->
+	<!-- //퀴즈 -->
+	<div class="alert alert_danger">
+		<span id="second">5</span>초 이내 구매시 사은품 증정!
+	</div>
+	<script>
+		// var age = 31;
+		// const home = 'seoul';
+
+		// // 예금
+		// function deposit(firstMoney){
+		// 	var firstMoney = 60000
+		// 	if(firstMoney >= 50000) {
+		// 		resultMoney = firstMoney * (1.2 ** 2) ;
+		// 		// ** 연산자 (a ** b) => a를 b승한다
+		// 	} else {
+		// 		resultMoney = firstMoney * 1.15 * 1.15 ;
+		// 	}
+		// 	console.log(resultMoney)
+		// };
+		// deposit();
+
+		// // 커피
+		// var first = 360;
+		// var second = first * 2 / 3;
+		// var third = second * 2 / 3;
+		// var ratio = 2 / 3;
+		// // ratio -> 공비 / 무한등비수열의 합
+		// var totalCoffee = first / (1 - ratio);
+		// console.log(totalCoffee);
+
+		// // 퀴즈
+		// var answerCount = 0; 
+		// $('#send_answer').on('click', () => {
+		// 	answerCount += 1;
+		// 	var answer = '1335';
+		// 	var inputAnswer = $('#answer').val();
+
+		// 	console.log(answerCount)
+		// 	if(inputAnswer === answer){
+		// 		alert('성공');
+		// 	}else{
+		// 		alert('멍청아');
+		// 	}
+		// });
+
+		// settimeout
+		// var second = 5
+		// setInterval(() => {
+		// 	if(second > 0){
+		// 		second -= 1;
+		// 		$('#second').text(second)
+		// 		console.log(second)
+		// 	}
+		// }, 1000);
+		// setTimeout(() => {
+		// 	$('.alert_danger').hide();
+		// }, 6000);
+
+		// 정규식
+		var 정규식0 = 'abc'.includes('a');
+		console.log(정규식0);
+		var 정규식1 = /adb/.test('abcde');// adb가 abcde에 들어있냐
+		console.log(정규식1);
+
+		var 정규식2 = /[a-z]/.test('abcde');// a부터 z까지 글자중에 하나가 들어있냐 / 한글,소문자,대문자 검증가능
+		console.log(정규식2);
+		var 정규식2_2 = /[a-zA-Z]/.test('abcde');// 아무 알파벳 하나가 들어있냐 
+		console.log(정규식2_2);
+		var 정규식2_3 = /[ㄱ-ㅎ가-힣ㅏ-ㅣ]/.test('abcdㅏe');// 한국어 문자 하나가 들어있냐 
+		var 정규식2_4 = /[0-9]/.test('abc0dㅏe');// 숫자 하나가 abcde에 들어있냐
+		console.log(정규식2_4);
+		var 정규식2_5 = /\S/.test('abc0dㅏe');// 아무 문자 하나가(특수기호 포함) 들어있냐
+		console.log(정규식2_5);
+
+		var 정규식3 = /^a/.test('ㅇabc0dㅏe');// ^ = 시작기호 a로 시작하냐 
+		console.log(정규식3);
+		var 정규식3_2 = /a$/.test('ㅇabc0dㅏe');// $ = 마침기호 a로 끝나냐 
+		console.log(정규식3_2);
+
+		var 정규식4 = /a|b/.test('ㅇc0dㅏe');// | = or
+		console.log(정규식4);
+
+		var e정규식 = /\S+@\S+\.\S+/.test('aa@d.a13')
+		console.log(e정규식);
+		// \S -> 한 글자를 뜻함 
+		// +는 왼쪽 문자 반복 검색
+		// .은 정규식 문법이므로 앞에 \를 써준다
+	</script>
+</body>
+</html>
