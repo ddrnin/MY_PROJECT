@@ -94,4 +94,68 @@ p {
   background: #fdfdda;
   color: #303030;
   border: 1px solid #ffff41;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.carousel ul {
+  margin: 0;
+  padding: 0;
+}
+.carousel ul li {
+  list-style: none;
+}
+.carousel .slide {
+  width: 500px;
+  overflow: hidden;
+}
+.carousel .img_wrap {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  transition: 0.5s;
+}
+.carousel .img_wrap li {
+  width: 500px;
+  height: 100%;
+  flex-shrink: 0;
+}
+.carousel .img_wrap li.img01 {
+  background: skyblue;
+}
+.carousel .img_wrap li.img02 {
+  background: yellowgreen;
+}
+.carousel .img_wrap li.img03 {
+  background: plum;
+}
+.carousel .btn_wrap {
+  display: flex;
+}
+.carousel .btn_wrap li {
+  padding: 20px 24px;
+  color: #fff;
+  background: #000;
+}
+.carousel .btn_wrap li ~ li {
+  margin-left: 10px;
+}
+.carousel .btn_wrap02 {
+  position: absolute;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+.carousel .btn_wrap02 button {
+  padding: 20px 24px;
+  background: #000;
+  color: #fff;
 }/*# sourceMappingURL=main.css.map */
