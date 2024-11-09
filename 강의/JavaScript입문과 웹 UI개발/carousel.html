@@ -14,12 +14,16 @@
 				<li class="img img01"></li>
 				<li class="img img02"></li>
 				<li class="img img03"></li>
+				<li class="img img04"></li>
+				<li class="img img05"></li>
 			</ul>
 		</div>
 		<ul class="btn_wrap">
-			<li class="btn01">1</li>
-			<li class="btn02">2</li>
-			<li class="btn03">3</li>
+			<li class="btn">1</li>
+			<li class="btn">2</li>
+			<li class="btn">3</li>
+			<li class="btn">4</li>
+			<li class="btn">5</li>
 		</ul>
 		<div class="btn_wrap02">
 			<button class="btn_prev">이전</button>
@@ -28,29 +32,34 @@
 	</main>
 
 	<script>
-		// for(let i = 1; i <= 3; i++){
-		// 	$(`.btn0${i}`).on('click', () => {
-		// 		$('.img.active').removeClass('active');
-		// 		$(`.img0${i}`).addClass('active');
-		// 	})
-		// }
-		var transForm = $('.img_wrap').css('transform', 'translateX');
-		console.log(transForm)
-		$('.btn01').on('click', function(){
-			$('.img_wrap').css('transform', 'translateX(0)')
-		})
-		$('.btn02').on('click', function(){
-			$('.img_wrap').css('transform', 'translateX(-100%)')
-		})
-		$('.btn03').on('click', function(){
-			$('.img_wrap').css('transform', 'translateX(-200%)')
-		})
 
+		$('.btn').on('click', function(){
+			const index = $(this).index();
+			$('.img_wrap').css('transform', `translateX(-${index}00%)`)
+			console.log(index);
+		})
+		// $('.btn01').on('click', function(){
+		// 	$('.img_wrap').css('transform', 'translateX(0%)')
+		// })
+		// $('.btn02').on('click', function(){ 
+		// 	$('.img_wrap').css('transform', 'translateX(-100%)')
+		// })
+		// $('.btn02').on('click', function(){
+		// 	$('.img_wrap').css('transform', 'translateX(-100%)')
+		// })
+		// $('.btn03').on('click', function(){
+		// 	$('.img_wrap').css('transform', 'translateX(-200%)')
+		// })
+		// $('.btn04').on('click', function(){
+		// 	$('.img_wrap').css('transform', 'translateX(-300%)')
+		// })
+	
 		var currentPicture = 0;
-		
 		$('.btn_next').on('click', function(){
-			currentPicture += 1;
-			$('.img_wrap').css('transform', `translateX(-${currentPicture}00%)`);
+			if(currentPicture < 3){
+				currentPicture += 1;
+				$('.img_wrap').css('transform', `translateX(-${currentPicture}00%)`);
+			}
 		});
 		$('.btn_prev').on('click', function(){
 			currentPicture -= 1;

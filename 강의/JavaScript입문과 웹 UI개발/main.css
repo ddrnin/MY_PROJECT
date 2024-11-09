@@ -137,6 +137,12 @@ p {
 .carousel .img_wrap li.img03 {
   background: plum;
 }
+.carousel .img_wrap li.img04 {
+  background: rgb(137, 130, 234);
+}
+.carousel .img_wrap li.img05 {
+  background: rgb(218, 206, 102);
+}
 .carousel .btn_wrap {
   display: flex;
 }

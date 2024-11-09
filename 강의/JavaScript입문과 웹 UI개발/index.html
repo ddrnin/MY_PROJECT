@@ -71,7 +71,7 @@
 			} else if ($('#password').val().length < 6){
 				alert('비밀번호를 6자 이상 입력해주세요');
 				return false;
-			} else if (!/[A-Z]/.test($('#password').val())){
+			} else if (!/[0-9A-Z]/.test($('#password').val())){
 				alert('비밀번호 형식에 맞게 작성해주세요');
 				return false;
 			}
