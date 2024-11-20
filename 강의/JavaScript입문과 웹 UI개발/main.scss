@@ -314,3 +314,16 @@ p{
 		}
 	}
 }
+
+.array{
+	.card{
+		display: flex;
+		flex-direction: column;
+		margin: 50px;
+		.img{
+			width: 150px;
+			height: 100px;
+			background: yellow;
+		}
+	}
+}

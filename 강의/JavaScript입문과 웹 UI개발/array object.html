@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+</head>
+<body class="array">
+	<div class="card">
+		<div class="img"></div>
+		<p>
+			상품명 : <span class="name"></span> 
+		</p>
+		<p>
+			가격 : <span class="price"></span>
+		</p>
+	</div>
+	<div class="card">
+		<div class="img"></div>
+		<p>
+			상품명 : <span class="name"></span> 
+		</p>
+		<p>
+			가격 : <span class="price"></span>
+		</p>
+	</div>
+	<div class="card">
+		<div class="img"></div>
+		<p>
+			상품명 : <span class="name"></span> 
+		</p>
+		<p>
+			가격 : <span class="price"></span>
+		</p>
+	</div>
+	<div class="card">
+		<div class="img"></div>
+		<p>
+			상품명 : <span class="name"></span> 
+		</p>
+		<p>
+			가격 : <span class="price"></span>
+		</p>
+	</div>
+</body>
+
+<script>
+	// var car = ['소나타', 60000, 'white'];
+	// console.log(car[1]);
+
+	// var car2 = {name : '소나타', price : [50000, 40000, 3000]};
+	// car2.name = '그랜저'
+	// console.log(car2.name);
+
+	var products = [
+		{ id : 0, price : 70000, title : 'Blossom Dress' },
+		{ id : 1, price : 50000, title : 'Springfield Shirt' },
+		{ id : 2, price : 60000, title : 'Black Monastery' },
+		{ id : 2, price : 6000, title : 'Black Monastery' }
+	];
+
+	$('.name').each(function(index){
+		$(this).text(products[index].title)
+	});
+	$('.price').each(function(index){
+		$(this).text(products[index].price)
+	});
+
+	console.log();
+	// $('#name').text(car2.name);
+	// $('#price').text(car2.price[0]);
+</script>
+</html>

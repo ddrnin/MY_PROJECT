@@ -305,4 +305,15 @@ p {
 }
 .modal .alert_pop .input_wrap .btn_wrap button ~ button {
   margin-left: 5px;
+}
+
+.array .card {
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+.array .card .img {
+  width: 150px;
+  height: 100px;
+  background: yellow;
 }/*# sourceMappingURL=main.css.map */
