@@ -327,3 +327,11 @@ p{
 		}
 	}
 }
+
+.select01{
+	.size{
+		&.hide{
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+</head>
+<body class="select01">
+	<form class="form_group">
+		<p>상품선택</p>
+		<select class="form_select clothes">
+			<option>모자</option>
+			<option>셔츠</option>
+			<option>바지</option>
+		</select>
+		<select class="form_select size hide"></select>
+	</form>
+	<script>
+		var pants = [28, 30 ,32, 34, 40, 80];
+		var shirts = [95, 100 ,105];
+
+		$('.clothes').on('input', function(){
+			var clothesVal = $(this).val();
+			if (clothesVal === '셔츠') {
+				$('.size').removeClass('hide');
+				$('.size').html('');
+
+				shirts.forEach(function(index){
+					$('.size').append(`<option>${index}</option>`)
+				})
+			} else if (clothesVal === '바지'){
+				$('.size').removeClass('hide');
+				$('.size').html('');
+				// for (var i = 0; i < pants.length; i++){
+				// 	$('.size').append(`<option>${pants[i]}</option>`);
+				// }
+
+				// forEach : array형에 붙여서 쓸 수 있다, array를 반복시켜줌
+				// element값은 pants의 값이 순차적(반복적)으로 들어옴
+				// index값은 말그대로 index값이라 0부터 갯수만큼 1씩 증가함
+				pants.forEach((element, index) => {
+					$('.size').append(`<option>${element}</option>`);
+				});
+			};
+		});
+
+		// for in 반복문 : object형의 반복문
+		var obj = {name : 'kim', age : 20}
+		for (var key1 in obj){
+			console.log(key1)// key 값 꺼낼때
+			console.log(obj[key1])// value 값 꺼낼때
+		}
+
+		// 반복문 용도 : 1.코드복붙하고싶으면 2.array, object 자료 다 꺼내고 싶을 때 
+		// * 화살표 함수 : this뜻이 달라질 수 있음(바깥에서 가져올 수도 있어서) - this 쓸 때는 일반function 사용
+	</script>
+</body>
+</html>

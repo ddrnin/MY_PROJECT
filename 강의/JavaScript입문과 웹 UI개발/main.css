@@ -316,4 +316,8 @@ p {
   width: 150px;
   height: 100px;
   background: yellow;
+}
+
+.select01 .size.hide {
+  display: none;
 }/*# sourceMappingURL=main.css.map */

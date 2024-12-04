@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+</head>
+<body>
+	
+
+	<script>
+
+		// 1. 출석부 이름찾기
+		var 출석부 = ['흥민', '영희', '철수', '재석', '철수'];
+		function nameSearch(a){
+
+			// 1-1 includes() 사용
+			// a == 출석부[0] || a == 출석부[1] || a == 출석부[2] || a == 출석부[3] => includes(a)
+			// 배열.includes(a) => 배열에 a가 있는지 확인
+			if (출석부.includes(a)){
+				console.log('있어요')
+				return false;
+			} else {
+				console.log('')
+			};
+
+			// 1.2 일반 반복문 사용
+			// for(var i = 0; i < 출석부.length; i++){
+			// 	if(a == 출석부[i]){
+			// 		console.log('있어요')
+			// 		return false;
+			// 	} 
+			// }
+		};
+		nameSearch('영희');
+
+		// 2. 구구단
+		// for(var a = 2; a <=9; a++){
+		// 	for(var i = 1; i <= 9; i++){
+		// 		console.log(a * i);
+		// 	};
+		// };
+
+		// 3. 배열의 합과 평균
+		function 모의고사(a, b){
+			let result = 0; // 배열 a[]의 합한 값을 저장할 변수
+			for(var i = 0; i < a.length; i++){
+				// 3-1 result += a[i]; - 오른쪽 값을 왼쪽 변수에 더하고 결과를 다시 왼쪽 변수에 저장
+				// 3-2 result = result + a[i];
+				result = result + a[i];
+			}
+			var a = result / a.length; // a[]의 평균값을 구해서 다시 a에 저장
+
+			if (a < b){
+				console.log(`평균보다 ${b - a}점이 올랐네요`)
+				console.log(a)
+			} else if (a > b) {
+				console.log(`평균보다 ${a - b}점이 떨어졌네요 재수추천`)
+				console.log(a)
+			}
+		};
+		모의고사([40,40,40], 20);
+		// let result = 0; result = result + a[i]; 배열을 다 더해서 result에 저장한다
+
+		// 3. 연습 평균 구하기
+		// x의 평균을 구해서 콘솔에 띄워라
+		// function x의평균(x){
+		// 	var result = 0
+		// 	for(var i = 0; i < x.length; i ++){
+		// 		result = result + x[i];
+		// 	}
+		// 	console.log(result / x.length)
+		// };
+		// x의평균([40,40,40,40,40]);
+	</script>
+</body>
+</html>

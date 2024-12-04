@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+</head>
+<body class="array">
+	<div class="container">
+		<div class="row"></div>
+	</div>
+
+	<script>
+		var products = [
+			{id : 0, price : 70000, title : 'Blossom Dress'},
+			{id : 1, price : 50000, title : 'Springfield Shirt'},
+			{id : 2, price : 60000, title : 'Black Monastery'}
+		];
+
+		// // 1. 함수로 만들어 재사용 가능, html 생성과 데이터 삽입 분리
+		// function createCard() {
+		// 	// createCard()는 카드의 HTML을 생성하는 역할만 하며, 실제 DOM에 추가하는 작업은 함수 밖에서 이루어지기 때문에 return 사용.
+		// 	return`
+		// 		<div class="card">
+		// 			<div class="img"></div>
+		// 			<span class="name"></span>
+		// 			<span class="price"></span>
+		// 		</div>
+		// 	`
+		// };
+		// $('.row').append(createCard() + createCard() + createCard());
+		// $('.name').each(function(item){
+		// 	$(this).text('상품명 : ' + products[item].title);
+		// });
+		// $('.price').each(function(item){
+		// 	$(this).text('가격 : ' + products[item].price);
+		// });
+
+		// 2. forEach 사용해서 코드 줄임 - html 생성하면서 데이터도 삽입
+		products.forEach(function(element, index){
+			var card =
+			`
+				<div class="card">
+					<div class="img"></div>
+					<span class="name">상품명 : ${element.title}</span>
+					<span class="price">가격 : ${element.price}</span>
+				</div>
+			`
+			$('.row').append(card);
+		});
+		console.log()
+
+	</script>
+
+	<button class="btn btn_more">더보기</button>
+
+	<script>
+		// 4,5,6번 상품
+		// var a = 0
+		// $('.btn_more').on('click', () => {
+		// 	console.log(a)
+		// 	if (a == 0){
+		// 		$.get('https://codingapple1.github.io/js/more1.json').done((data) => {
+		// 			data.forEach(function(element, index){
+		// 				var card =
+		// 				`
+		// 					<div class="card">
+		// 						<div class="img"></div>
+		// 						<span class="name">상품명 : ${element.title}</span>
+		// 						<span class="price">가격 : ${element.price}</span>
+		// 					</div>
+		// 				`
+		// 				$('.row').append(card);
+		// 			});
+		// 			console.log(data)
+		// 			a ++;
+		// 		});
+		// 	} else if (a == 1){
+		// 		// 7, 8, 9번 상품
+		// 		$.get('https://codingapple1.github.io/js/more2.json').done((data) => {
+		// 			data.forEach(function(element, index){
+		// 				var card =
+		// 				`
+		// 					<div class="card">
+		// 						<div class="img"></div>
+		// 						<span class="name">상품명 : ${element.title}</span>
+		// 						<span class="price">가격 : ${element.price}</span>
+		// 					</div>
+		// 				`
+		// 				$('.row').append(card);
+		// 			});
+		// 			console.log(data)
+		// 			$('.btn_more').css('display', 'none');
+		// 			console.log(a)
+		// 		});
+		// 	};
+		// });
+
+		// 2-1 forEach 사용해서 코드 줄임 - html 생성하면서 데이터도 삽입 - function createCard()로 소스 줄임 (파라미터 주의)
+		
+		function createCard(data){
+			// 서버에서 불러온 data값을 createCard()함수에 전달 -> data에 element, title, price가 정의되어 있지 않아도 자동으로 사용됨
+			data.forEach(function(element, index){
+				var card = 
+				`
+					<div class="card">
+						<div class="img"></div>
+						<span class="name">상품명 : ${element.title}</span>
+						<span class="price">가격 : ${element.price}</span>
+					</div>
+				`
+				$('.row').append(card);
+			});
+		};
+
+		// 4,5,6번 상품
+		var a = 0
+		$('.btn_more').on('click', () => {
+			console.log(a)
+			if (a == 0){
+				$.get('https://codingapple1.github.io/js/more1.json').done((data) => {
+					// 서버에서 불러온 data값을 createCard()함수에 전달 ->
+					createCard(data)
+					console.log(data)
+					a ++;
+				});
+			} else if (a == 1){
+				// 7, 8, 9번 상품
+				$.get('https://codingapple1.github.io/js/more2.json').done((data) => {
+					data.forEach(function(element, index){
+						var card =
+						`
+							<div class="card">
+								<div class="img"></div>
+								<span class="name">상품명 : ${element.title}</span>
+								<span class="price">가격 : ${element.price}</span>
+							</div>
+						`
+						$('.row').append(card);
+					});
+					console.log(data)
+					$('.btn_more').css('display', 'none');
+					console.log(a)
+				});
+			};
+		});
+	</script>
+
+</body>
+</html>
