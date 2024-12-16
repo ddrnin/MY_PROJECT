@@ -307,6 +307,10 @@ p {
   margin-left: 5px;
 }
 
+.array .card_wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 .array .card {
   display: flex;
   flex-direction: column;

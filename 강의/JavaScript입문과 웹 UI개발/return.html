@@ -37,7 +37,7 @@
 		</li>
 		<li>
 			<div class="img"></div>
-			<p>가격 : <span class="price">5152332130</span>원</p>
+			<p>가격 : <span class="price">ㅁ5152332130</span>원</p>
 			<p>적립 포인트 : <span class="tex"></span>원</p>
 		</li>
 	</ul>
@@ -45,13 +45,17 @@
 		// return
 		// - 함수 종료 기능
 		// - 오른쪽에 아무거나 올 수 있음
-
+		// toLocaleString() - 여기서는 소수점을 위해 사용
+		// parseFloat() - 실수 변환(소수점가능)
+		// parseInt() - 정수 변환
 		function texCalc(){
 			var prices = [];
 			var tex = [];
 			$('.price').each(function(index){
 				prices.push(parseInt($(this).text()));
+				// .프라이스의 각각의 텍스트 값을 정수로 변환하여 프라이스 배열에 저장한다
 				$(this).text(prices[index].toLocaleString());
+				// .프라이스의 텍스트에 프라이스 배열의 각 값을 저장한다
 			});
 			tex = prices.map(function(price){
 				return parseFloat((price * 0.06).toFixed(0));

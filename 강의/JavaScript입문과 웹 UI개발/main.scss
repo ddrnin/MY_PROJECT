@@ -316,6 +316,10 @@ p{
 }
 
 .array{
+	.card_wrap {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+	}
 	.card{
 		display: flex;
 		flex-direction: column;
@@ -335,3 +339,4 @@ p{
 		}
 	}
 }
+
