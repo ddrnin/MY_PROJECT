@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>tab</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+	<style>
+		.container {
+			width:60%;
+			margin: 0 auto; 
+		}
+		ul.list {
+			list-style-type: none;
+			margin: 2px 0;
+			padding: 0;
+			border-bottom: 1px solid #ccc;
+			display: flex;
+			justify-content: center;
+		}
+		ul.list::after {
+			content: '';
+			display: block;
+			clear: both;
+		}
+		.tab-button {
+			display: block;
+			padding: 10px 20px 10px 20px;
+			float: left;
+			margin-right: -1px;
+			margin-bottom: -1px;
+			color: grey;
+			text-decoration: none;
+			cursor: pointer;
+		}
+		.orange {
+			border-top: 2px solid orange;
+			border-right: 1px solid #ccc;
+			border-bottom: 1px solid white;
+			border-left: 1px solid #ccc;
+			color: black;
+			margin-top: -2px;
+		}
+		.tab-content {
+			display: none;
+			padding: 10px;
+		}
+		.show {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class="container mt-5">
+		<ul class="list">
+			<li class="tab-button" data-id="0">Products</li>
+			<li class="tab-button orange" data-id="1">Information</li>
+			<li class="tab-button" data-id="2">Shipping</li>
+			<li class="tab-button" data-id="3">Products</li>
+			<li class="tab-button" data-id="4">Information</li>
+			<li class="tab-button" data-id="5">Shipping</li>
+			<li class="tab-button" data-id="6">Products</li>
+		</ul>
+		<div class="tab-content">
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+		</div>
+		<div class="tab-content show">
+			<p>스펙설명입니다. Information</p><br>
+			<p>스펙설명입니다. Information</p><br>
+			<p>스펙설명입니다. Information</p><br>
+			<p>스펙설명입니다. Information</p><br>
+			<p>스펙설명입니다. Information</p><br>
+		</div>
+		<div class="tab-content">
+			<p>배송정보입니다. Shipping</p><br>
+			<p>배송정보입니다. Shipping</p><br>
+			<p>배송정보입니다. Shipping</p><br>
+			<p>배송정보입니다. Shipping</p><br>
+			<p>배송정보입니다. Shipping</p><br>
+		</div>
+		<div class="tab-content">
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+		</div>
+		<div class="tab-content">
+			<p>스펙설명입니다. Information</p><br>
+			<p>스펙설명입니다. Information</p><br>
+			<p>스펙설명입니다. Information</p><br>
+			<p>스펙설명입니다. Information</p><br>
+			<p>스펙설명입니다. Information</p><br>
+		</div>
+		<div class="tab-content">
+			<p>배송정보입니다. Shipping</p><br>
+			<p>배송정보입니다. Shipping</p><br>
+			<p>배송정보입니다. Shipping</p><br>
+			<p>배송정보입니다. Shipping</p><br>
+			<p>배송정보입니다. Shipping</p><br>
+		</div>
+		<div class="tab-content">
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+			<p>상품설명입니다. Product</p><br>
+		</div>
+	</div> 
+
+		<script>
+			// v0 노가다 코드
+			// $('.tab-button').eq(0).on('click', function(){
+			// 	$('.tab-button').removeClass('orange');
+			// 	$('.tab-content').removeClass('show');
+			// 	$('.tab-button').eq(0).addClass('orange');
+			// 	$('.tab-content').eq(0).addClass('show');
+			// });
+			// $('.tab-button').eq(1).on('click', function(){
+			// 	$('.tab-button').removeClass('orange');
+			// 	$('.tab-content').removeClass('show');
+			// 	$('.tab-button').eq(1).addClass('orange');
+			// 	$('.tab-content').eq(1).addClass('show');
+			// });
+			// $('.tab-button').eq(2).on('click', function(){
+			// 	$('.tab-button').removeClass('orange');
+			// 	$('.tab-content').removeClass('show');
+			// 	$('.tab-button').eq(2).addClass('orange');
+			// 	$('.tab-content').eq(2).addClass('show');
+			// });
+			var btn = $('.tab-button');
+			var content = $('.tab-content');
+			var a = $('.list li').length;
+
+			// v1 for문을 이용해 줄이기
+			// for(let i = 0; i < a; i++){
+			// 	btn.eq(i).on('click', function(){
+			// 		btn.removeClass('orange');
+			// 		content.removeClass('show');
+			// 		btn.eq(i).addClass('orange');
+			// 		content.eq(i).addClass('show');
+			// 	});
+			// }; 
+
+			// v2 함수를 따로 빼서 만들기
+			// for(let i = 0; i < a; i++){
+			// 	btn.eq(i).on('click', function(){
+			// 		tabOpen(i);
+			// 	});
+			// }; 
+			// function tabOpen(i){
+			// 	btn.removeClass('orange');
+			// 	content.removeClass('show');
+			// 	btn.eq(i).addClass('orange');
+			// 	content.eq(i).addClass('show');
+			// };
+
+			// v3 이벤트 버블링 이용
+			// $('.list').on('click', function(e){
+			// 	if($(e.target).is($('.tab-button').eq(0))){
+			// 		tabOpen(0);
+			// 	}
+			// 	if($(e.target).is($('.tab-button').eq(1))){
+			// 		tabOpen(1);
+			// 	}
+			// 	if($(e.target).is($('.tab-button').eq(2))){
+			// 		tabOpen(2);
+			// 	}
+			// });
+			// function tabOpen(i){
+			// 	btn.removeClass('orange');
+			// 	content.removeClass('show');
+			// 	btn.eq(i).addClass('orange');
+			// 	content.eq(i).addClass('show');
+			// };
+
+			// v4 이벤트 리스너 줄이면 랩용량 절약
+			$('.list').on('mouseover', function(e){
+				btn.removeClass('orange');
+				content.removeClass('show');
+				for(let i = 0; i < a; i ++){
+					if($(e.target).is(btn.eq(i))){
+						btn.eq(i).addClass('orange')
+						content.eq(i).addClass('show')
+					};
+				};
+			});
+
+			// v5 dataset 매서드 이용
+			// $('.list').on('click', function(e){
+			// 	tabOpen(e.target.dataset.id)
+			// });
+			// function tabOpen(i){
+			// 	btn.removeClass('orange');
+			// 	content.removeClass('show');
+			// 	btn.eq(i).addClass('orange');
+			// 	content.eq(i).addClass('show');
+			// };
+			
+				
+			// 버튼이 여러개 있을 때는 일단 첫번째 버튼의 기능부터 만든다.
+			// 그뒤 반복되는 부분을 반복문을 이용해서 만든다.
+			// for문에는 var말고 let을 써야한다.
+
+			// 좋은 코드인것인가는
+			// -확장성
+			// -관리 쉬움
+			// -기능 잘 구현
+			// -성능 문제
+			// 4가지를 생각해본다.
+		</script>
+</body>
+</html>

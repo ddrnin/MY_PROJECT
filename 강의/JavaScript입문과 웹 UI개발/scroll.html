@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>scroll</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+</head>
+<style>
+	html::-webkit-scrollbar {
+		display: none;
+	}
+	.scroll {
+		-ms-overflow-style: none; /* 인터넷 익스플로러 */
+		scrollbar-width: none; /* 파이어폭스 */
+	}
+</style>
+<body class="scroll">
+		<nav class="navbar">
+			<div class="logo">
+				dmshop
+			</div>
+		</nav>
+		<div style="height: 2500px;">
+		</div>
+		<div class="txt_box" style="width: 1000px; height:200px; overflow-y: scroll;">
+			addddddddddddddddddddddddddddddddddddddd    <br> 
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			addddddddddddddddddddddddddddddddddddddd     <br>
+		
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			<br>
+			addddddddddddddddddddddddddddddddddddddd     
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			<br>
+			addddddddddddddddddddddddddddddddddddddd     
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			<br>
+			addddddddddddddddddddddddddddddddddddddd     
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			addddddddddddddddddddddddddddddddddddddd     
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			addddddddddddddddddddddddddddddddddddddd     
+			addddddddddddddddddddddddddddddddddddddd     <br>
+			addddddddddddddddddddddddddddddddddddddd     
+			addddddddddddddddddddddddddddddddddddddd     <br>
+		</div>
+
+		<div class="side_ui">
+			<div class="read"></div>
+		</div>
+		<script>
+			// $(window).on('scroll', function(){
+			// 	if ($(window).scrollTop() > 200){
+			// 		$('.logo').css('fontSize', '20px')
+			// 	} else {
+			// 		$('.logo').css('fontSize', '40px')
+			// 	};
+
+			// 	var windowScroll = $(window).scrollTop(); // 스크롤된 위치 (스크롤 양)
+			// 	var viewportHeight = $(window).height(); // 뷰포트의 높이 (보이는 높이)
+			// 	var documentHeight = $(document).height(); // 전체 문서의 높이
+			// 	// documentHeight - viewportHeight = 스크롤 가능한 높이
+			// 	var persent = (windowScroll / (documentHeight - viewportHeight)) * 100
+
+			// 	$('.read').css('height', persent + '%');
+			// });
+
+			// $('.txt_box').on('scroll', function(){
+			// 	// var clientHeight = document.querySelector('.txt_box').clientHeight;
+			// 	// var height = document.querySelector('.txt_box').scrollHeight;
+			// 	var boxScroll = $('.txt_box').scrollTop() // 스크롤된 위치 (스크롤 양)
+			// 	var viewportHeight = $('.txt_box').height(); // 보이는 높이
+			// 	var height = $('.txt_box').prop('scrollHeight'); // 전체 높이
+			// 	if(boxScroll + viewportHeight > height - 1){
+			// 		console.log(viewportHeight);
+			// 		alert('약관에 동의해라');
+			// 	};
+			// });
+
+			$(window).on('scroll', function(){
+				if($(window).scrollTop() > 200) {
+					$('.logo').css('fontSize', '20px')
+				} else {
+					$('.logo').css('fontSize', '40px')
+				}
+				// console.log($(window).scrollTop())
+			});
+
+			
+			$('.txt_box').on('scroll', function(){
+				var viewportHeight = $('.txt_box').height();
+				var height = $('.txt_box').prop('scrollHeight');
+				var scrollHeight = $('.txt_box').scrollTop();
+
+				if((viewportHeight + scrollHeight) > height - 1) {
+					alert('동의해라')
+				}
+			});
+
+			$(window).on('scroll', function(){
+				var height = $(document).height();
+				var viewportHeight = $(window).height();
+				var scrollHeight = $(window).scrollTop();
+				var persentHeight = parseFloat(((scrollHeight / (height - viewportHeight)) * 100).toFixed(1));
+				
+				$('.read').css('height', persentHeight + 'dvh')
+				console.log(persentHeight);
+			});
+
+			// scrollTop()으로 현재의 스크롤 양을 구해서 어느 위치를 지나면 애니메이션 등이 실행되게 할 수 있다.
+			// prop('scrollHeight')로 overflow.scrollY 되어있는 박스의 총 높이를 구할 수 있다.
+			// 보이는 높이와 스크롤한 양을 더하면 박스의 총 높이가 된다.
+			// 총 높이에서 보이는 높이를 빼면 스크롤 가능한 높이가 된다.
+			// -> 현재 높이에 스크롤 가능한 높이를 나누고 100을 곱하면 현재 스크롤 값을 퍼센트로 구할 수 있다.
+		</script>
+</body>
+</html>

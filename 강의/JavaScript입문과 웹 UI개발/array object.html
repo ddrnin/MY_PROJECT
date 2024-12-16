@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+</head>
+<body class="array">
+	<div class="card_wrap">
+		<div class="card">
+			<div class="img"></div>
+			<span class="name"></span> 
+			<span class="price"></span>
+		</div>
+		<div class="card">
+			<div class="img"></div>
+			<span class="name"></span> 
+			<span class="price"></span>
+		</div>
+		<div class="card">
+			<div class="img"></div>
+			<span class="name"></span> 
+			<span class="price"></span>
+		</div>
+		<div class="card">
+			<div class="img"></div>
+			<span class="name"></span> 
+			<span class="price"></span>
+		</div>		
+	</div>
+
+	<!-- <div class="dkdk" style="width: 50px; height:50px; background-color: red;">
+		<p id="name"></p>
+		<p id="price"></p>
+	</div> -->
+</body>
+
+<script>
+	var products = [
+		{id : 0, price : 70000, title : 'Blossom Dress'},
+		{id : 1, price : 50000, title : 'Springfield Shirt'},
+		{id : 2, price : 60000, title : 'Black Monastery'},
+		{id : 2, price : 3000, title : 'Black'}
+	];
+
+	// 제이쿼리
+	$('.name').each(function(index){
+		$(this).text(`상품명 : ${(products[index].title)}`);
+	});
+	$('.price').each(function(index){
+		$(this).text('가격 : ' + (products[index].price));
+	});
+	// console.log(`상품명 : ${products[index].title}`);
+	// 자바스크립트
+	// document.querySelectorAll('.name').forEach((el, index) => {
+	// 	el.innerHTML = '상품명 : ' + products[index].title;
+	// });
+	// document.querySelectorAll('.price').forEach((el, index) => {
+	// 	el.innerHTML = '가격 : ' + products[index].price
+	// });
+
+	
+
+
+
+	// var car = ['소나타', 60000, 'white'];
+	// var car2 = {name : '소나타', price : [50000, 40000, 3000]};
+	// var car2 = { name : '소나타', price : 50000 };
+	// $('#name').html(car2.name);
+	// $('#price').html(car2.price);
+	// car2.name = '그랜저'
+	// console.log(car2);
+
+	// var products = [
+	// 	{ id : 0, price : 70000, title : 'Blossom Dress' },
+	// 	{ id : 1, price : 50000, title : 'Springfield Shirt' },
+	// 	{ id : 2, price : 60000, title : 'Black Monastery' },
+	// 	{ id : 2, price : 6000, title : 'Black Monastery' }
+	// ];
+
+	// $('.name').each(function(index){
+	// 	$(this).text(products[index].title)
+	// });
+	// $('.price').each(function(index){
+	// 	$(this).text(products[index].price)
+	// });
+
+	// console.log();
+	// $('#name').text(car2.name);
+	// $('#price').text(car2.price[0]);
+	var 출석부 = ['흥민', '철수', '영희']
+	function 이름찾기(name) {
+		for (var i = 0; i <= 출석부.length; i++) {
+			if (출석부[i] == name) {
+				console.log('있어요')
+				return false;
+			} else {
+				console.log('없어요')
+				
+			}
+			
+		}
+	}
+	// 이름찾기('영희')
+
+	function 모의고사(a, b) {
+		let result = 0;
+		for (var i = 0; i < a.length; i++) {
+			result += a[i]
+		}
+		var a = result / a.length;
+		if (a < b) {
+			console.log(`점수 ${b - a}점 상승`);
+
+		} else if (a > b) {
+			console.log(`점수 ${a - b}점 하락`)
+		} else {
+			console.log('똑같아')
+		}
+	}
+	모의고사([40, 50, 40], 20)
+</script>
+</html>

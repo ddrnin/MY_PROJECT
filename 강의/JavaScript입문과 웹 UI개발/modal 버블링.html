@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+</head>
+<body class="modal">
+	<header>
+		<h3>로고</h3>
+		<h2>DMshop</h2>
+		<div class="btn_wrap">
+			<button class="btn_login">로그인</button>
+			<button>회원가입</button>
+		</div>
+	</header>
+	<div class="alert_pop">
+		<div class="input_wrap">
+			<h3>로그인하쇼</h3>
+			<div class="input_box">
+				<p>ID </p>
+				<input type="text">
+			</div>
+			<div class="input_box">
+				<p>PASSWORD </p>
+				<input type="password">
+			</div>
+			<div class="btn_wrap">
+				<button>로그인</button>
+				<button class="btn_close">닫기</button>
+			</div>
+		</div>
+	</div>
+	<script>
+		// e.target; 실제 클릭한 요소 알려줌
+		// e.currentTarget; 지금 이벤트리스너가 달린 곳 알려줌 this라고 써도 똑같음
+		// e.preventDefault(); 실행하면 이벤트 기본 동작을 막아줌
+		// e.stopPropagation(); 실행하면 내 상위요소로의 이벤트 버블링을 중단해줌
+		$('.btn_login').on('click', function(){
+			$('.alert_pop').addClass('view')
+		});
+		$('.btn_close').on('click', function(){
+			$('.alert_pop').removeClass('view')
+		});
+		$('.input_wrap').on('click', function(e){
+			// e.stopPropagation();
+		});
+		$('.alert_pop').on('click', function(e){
+			// if(e.target == $('.alert_pop')) - 제이쿼리 셀럭터끼리 등호비교는 불가능 / .is = 비교용 함수
+			if($(e.target).is($('.alert_pop'))){
+				$('.alert_pop').removeClass('view');
+			}
+		});
+		
+	</script>
+</body>
+</html>
