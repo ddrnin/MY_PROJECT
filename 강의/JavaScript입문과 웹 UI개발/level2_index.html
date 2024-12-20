@@ -73,21 +73,27 @@
 		// 정규식
 		var 정규식0 = 'abc'.includes('a');
 		console.log(정규식0);
+
 		var 정규식1 = /adb/.test('abcde');// adb가 abcde에 들어있냐
 		console.log(정규식1);
 
 		var 정규식2 = /[a-z]/.test('abcde');// a부터 z까지 글자중에 하나가 들어있냐 / 한글,소문자,대문자 검증가능
 		console.log(정규식2);
+
 		var 정규식2_2 = /[a-zA-Z]/.test('abcde');// 아무 알파벳 하나가 들어있냐 
 		console.log(정규식2_2);
+
 		var 정규식2_3 = /[ㄱ-ㅎ가-힣ㅏ-ㅣ]/.test('abcdㅏe');// 한국어 문자 하나가 들어있냐 
+
 		var 정규식2_4 = /[0-9]/.test('abc0dㅏe');// 숫자 하나가 abcde에 들어있냐
 		console.log(정규식2_4);
+
 		var 정규식2_5 = /\S/.test('abc0dㅏe');// 아무 문자 하나가(특수기호 포함) 들어있냐
 		console.log(정규식2_5);
 
 		var 정규식3 = /^a/.test('ㅇabc0dㅏe');// ^ = 시작기호 a로 시작하냐 
 		console.log(정규식3);
+		
 		var 정규식3_2 = /a$/.test('ㅇabc0dㅏe');// $ = 마침기호 a로 끝나냐 
 		console.log(정규식3_2);
 

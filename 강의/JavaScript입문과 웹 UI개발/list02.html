@@ -11,57 +11,216 @@
 	<div class="container">
 		<div class="row"></div>
 	</div>
-	<button class="btn_more">더1보1기</button>
-	<button class="btn_sort">가격순 정렬</button>
+	<div class="btn_wrap">
+		<button class="btn_blue btn_more">더보기</button>
+		<button class="btn_blue btn_sort">가격순 정렬</button>
+		<button class="btn_blue btn_sort2">가나다순 정렬</button>
+		<button class="btn_blue btn_sort3">다가나순 정렬</button>
+		<button class="btn_blue btn_filter">6만원 이하 상품보기</button>
+		<button class="btn_blue btn_original">원래대로 버튼</button>
+		<div class="input_wrap">
+			<input type="text" id="searchInput01"> ~
+			<input type="text" id="searchInput01_2">
+			<button class="btn_blue btn_search">가격 검색</button>
+		</div>
+		<div class="input_wrap">
+			<input type="text" id="searchInput02">
+			<button class="btn_blue btn_search02">옷 검색</button>
+		</div>
+	</div>
+	
 	<script>
 		var products = [
-			{id : 0, price : 30000, title : '옷1'},
-			{id : 0, price : 60000, title : '옷2'},
-			{id : 0, price : 50000, title : '옷3'}
+			{id : 0, price : 30000, title : 'b나옷'},
+			{id : 1, price : 60000, title : 'e마옷'},
+			{id : 2, price : 45000, title : 'c다옷'},
+			{id : 3, price : 40000, title : 'f바옷'},
+			{id : 4, price : 70000, title : 'g사옷'},
+			{id : 5, price : 260000, title : 'a가옷'},
+			{id : 6, price : 130000, title : 'd라옷'},
+			{id : 7, price : 1350000, title : 'z하옷'}
 		]
+		var original = [...products] // products배열 원본 저장
+		var newProducts = products
 
-		products.forEach((element, index) => {
-			$('.row').append(
-				`<div class="card">
-					<div class="img"></div>
-					<span class="name">${element.title}</span>
-					<span class="price">${element.price}</span>
-				</div>`
-			)
-		});
-
+		// html 추가하는 중복 코드 함수로 정리
 		function temp(data) {
 			data.forEach((element, index) => {
 				$('.row').append(
 					`<div class="card">
-					<div class="img"></div>
-					<span class="name">${element.title}</span>
-					<span class="price">${element.price}</span>
+						<div class="img"><img src="./img/prd_0${element.id + 1}.png" alt=""></div>
+						<span class="name">${element.title}</span>
+						<span class="price">가격 : ${element.price}</span>
+						<button class="btn_blue btn_buy">구매하기</button>
 					</div>`
 				)
 			})
-		}
+		};
 
+		// 초기 상품 생성
+		temp(products)
+
+		// 추가 상품 생성
 		var a = 0;
 		$('.btn_more').on('click', () => {
-			console.log(a)
+			// console.log(a)
 			if (a == 0) {
 				$.get('https://codingapple1.github.io/js/more1.json').done((data) => {
+					products = products.concat(data); // 가져온 데이터를 기존 products에 추가
 					temp(data)
 				})
 				a = 1;
 			} else if (a == 1) {
 				$.get('https://codingapple1.github.io/js/more2.json').done((data) => {
+					products = products.concat(data); // 가져온 데이터를 기존 products에 추가
 					temp(data)
 					a = 2;
 					$('.btn_more').css('display', 'none');
 				})
 			}
 		});
+
+		// 구매하기 버튼 01
+		$('.row').on('click', '.btn_buy', function() { // 동적 요소위해 이벤트 위임
+			// 이벤트 발생하는 버튼의 형제를 선택
+			var itemName = $(this).siblings('.name').html();
+			// 로컬스토리지에 cart값이 있으면 JSON.parse로 array/object로 만듦, 없으면 cart를 배열로 설정
+			var cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+			// 중복되지않는 상품명만 배열 cart에 추가
+			if (! cart.includes(itemName)) {
+				cart.push(itemName, itemName)
+			}
+
+			// 문자로 바꿔서 로컬스토리지에 넣는다.
+			localStorage.setItem('cart', JSON.stringify(cart))
+		})
 		
+		// 구매하기 버튼 02
+		// $('.btn_buy').on('click', function(){
+		// 	var itemName = $(this).siblings('.name').html()
+		// 	if (localStorage.getItem('cart') != null ) {
+		// 		var 꺼낸거 = JSON.parse(localStorage.getItem('cart'));
+		// 		꺼낸거.push(itemName);
+		// 		localStorage.setItem('cart', JSON.stringify(꺼낸거))
+		// 	} else {
+		// 		localStorage.setItem('cart', JSON.stringify([itemName]))
+		// 		console.log('11')
+		// 	}
+		// })
+		// 가격 검색 버튼
+		$('.btn_search').on('click', function(){
+			var lowCost = $('#searchInput01').val() ? parseInt($('#searchInput01').val()) : 0;
+			var highCost = $('#searchInput01_2').val() ? parseInt($('#searchInput01_2').val()) : Math.max(...products.map(a => a.price));
+			
+			if (Number.isNaN(lowCost) || lowCost < 0) {
+				alert('유효한 최저 가격을 입력해주세요.');
+				console.log(lowCost)
+				return;
+			}
+			if (isNaN(highCost) || highCost < 0) {
+				alert('유효한 최고 가격을 입력해주세요.');
+				return;
+			}
+
+			newProducts = products.filter(a => {
+				return a.price >= lowCost && a.price <= highCost
+			})
+
+			if(newProducts.length === 0) {
+				alert('해당 가격 범위 내 상품이 없습니다')
+			} 
+			else if (/[^0-9]/.test(lowCost)){
+				alert('숫자만 입력해주세요')
+			}
+			else {
+				$('.row').html('')
+				temp(newProducts)
+				console.log(lowCost)
+			}
+		});
+
+		// 옷 검색
+		$('.btn_search02').on('click', function(){
+			var 옷검색어 = $('#searchInput02').val()
+			var newProducts2 = newProducts.filter(a => {
+				return a.title.includes(옷검색어)
+			})
+			if(옷검색어.length === 0) {
+				alert('검색어를 입력해주세요옷!')
+			} else {
+				if (newProducts2.length === 0) {
+					alert('검색된 상품이 없습니다')
+				} else {
+					$('.row').html('')
+					temp(newProducts2)
+					$('#searchInput02').val('')
+				}
+			}
+		});
+
+		// 가격순정렬 버튼
+		$('.btn_sort').on('click', function(){
+			newProducts.sort(function(a, b){
+				return a.price - b.price
+			})
+			$('.row').html('');
+			temp(newProducts)
+		});
+
+		// 가나다순 정렬 버튼
+		$('.btn_sort2').on('click', function(){
+			newProducts.sort(function(a, b){
+				if(a.title.toLowerCase() > b.title.toLowerCase()) {
+					return 1
+				} else {
+					return -1
+				}
+			})
+			$('.row').html('');
+			temp(newProducts)
+		});
+
+		// 다가나순 정렬 버튼
+		$('.btn_sort3').on('click', function(){
+			newProducts.sort(function(a, b){
+				if(a.title.toUpperCase() < b.title.toUpperCase()) {
+					return 1
+				} else {
+					return -1
+				}
+				// 리턴 오른쪽이 양수면 a가 오른쪽으로 이동
+				// if(a.title < b.title) { return 1 } -- a가 작을 때 뒤(오른쪽)로 보냄 -> 다나가순
+				// 리턴 오른쪽이 음수면 b가 오른쪽으로 이동
+				// if(a.title > b.title) { return 1 } -- a가 클 때 뒤(오른쪽)로 보냄 -> 가나다순
+				// return b.title.localeCompare(a.title);
+			})
+			$('.row').html('');
+			temp(newProducts)
+		});
+
+		// 6만원 이하 상품보기
+		$('.btn_filter').on('click', function(){
+			var filter60000 = newProducts.filter(function(a){
+				return a.price < 60000
+			})
+			$('.row').html('')
+			temp(filter60000)
+			console.log(filter60000)
+		});
+
+		// 원래대로 버튼
+		$('.btn_original').on('click', function(){
+			$('.row').html('')
+			temp(original)
+		});
+		
+
+
+		// 연습
 		var array = [1,2,32,43,5,40];
-		var array2 = ['a', 'c', 'd', 'b']
-		// array.sort(); 그냥 sort만 쓰면 문자정렬
+		var array2 = ['나', '다', '가']
+	// sort
+		array.sort(); // 그냥 sort만 쓰면 문자순정렬
 		array.sort(function(a,b){
 			return a - b
 			// return b - a; 내림차순 정렬
@@ -69,10 +228,28 @@
 		// a,b는 array 안의 자료임, return 오른쪽이 양수면 a를 오른쪽으로 옮김, return 오른쪽이 음수면 b를 오른쪽으로 옮김
 		// 왜냐하면 a - b가 양수면 a가 큰 것이고 음수면 b가 큰 것이기 때문에
 		array2.sort(function(a,b){
-			
+			if (a < b) {
+				return 1
+			} else if (a > b) {
+				return -1
+			}
+			// return b.localeCompare(a);
 		});
+	// filter 
+		var arrayFiler = array.filter(function(a){ // 파라미터 뚫어주고, 신문법이라 변수에 저장해서 써야함
+			return a < 4 // 조건식 : 어떤 자료를 남길건지
+		});
+	// map
+		var arrayMap = array.map(function(a){ // 파라미터 뚫어주고, 신문법이라 변수에 저장해서 써야함
+			return a * 4 // 조건식 : 자료를 어떻게 전부 변형할 것인지
+		});
+
 		console.log(array)
+		console.log(arrayFiler)
+		console.log(arrayMap)
 		console.log(array2)
+
+		
 	</script>
 </body>
 </html>

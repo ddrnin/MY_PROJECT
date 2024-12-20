@@ -320,14 +320,46 @@ p{
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 	}
-	.card{
-		display: flex;
-		flex-direction: column;
-		margin: 50px;
+	.row {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.card {
+		// @for $i from 1 through 5 {
+		// 	&:nth-child(#{$i}) {
+		// 		.img {
+		// 			background: mix(#ff0000, #0000ff, $i * 20%);
+		// 		}	
+		// 	}
+		// }
+		margin: 40px;
 		.img{
 			width: 150px;
 			height: 100px;
 			background: yellow;
+			img{
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		span {
+			display: block;
+		}
+	}
+	.btn_wrap {
+		padding: 50px;
+		
+		.input_wrap {
+			margin-top: 10px;
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			input {
+				padding: 6px 12px 8px;
+				border-radius: 8px;
+				outline: none;
+			}
 		}
 	}
 }
@@ -338,5 +370,15 @@ p{
 			display: none;
 		}
 	}
+}
+
+.btn_blue {
+	padding: 6px 12px 8px;
+	outline: none;
+	border: none;
+	background: #5da1fa;
+	border-radius: 8px;
+	color: #fff;
+	cursor: pointer;
 }
 

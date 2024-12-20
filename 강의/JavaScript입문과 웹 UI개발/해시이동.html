@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+</head>
+<body>
+	<script>
+		$(document).ready(function() {
+			// URL에서 해시 부분을 가져옴
+			const hash = window.location.hash;
+
+			if (hash) {
+				for (var i = 1; i <= 3; i++) {
+					if (hash === `#seal0${i}`) {
+						const $target = $(hash);
+						if ($target.length) {
+							const contInner_H = $target.find('article .cont_inner').outerHeight();
+							$target.find('article .cont').css({height: contInner_H});
+							$target.find('.evt_article').addClass('active');
+						}
+					}
+				}
+			};
+			
+			
+			if (hash && hash === "#seal01") {
+				if ($(hash).length) {
+					var contInner_H = $('#seal01 article').find('.cont_inner').outerHeight();
+					$('#seal01 article').find('.cont').css({height: contInner_H});
+					$(hash).find('.evt_article').addClass('active');
+				}
+			} else if (hash && hash === "#seal02") {
+				if ($(hash).length) {
+					var contInner_H = $('#seal02 article').find('.cont_inner').outerHeight();
+					$('#seal02 article').find('.cont').css({height: contInner_H});
+					$(hash).find('.evt_article').addClass('active');
+				}
+			} else if (hash && hash === "#seal03") {
+				if ($(hash).length) {
+					var contInner_H = $('#seal03 article').find('.cont_inner').outerHeight();
+					$('#seal03 article').find('.cont').css({height: contInner_H});
+					$(hash).find('.evt_article').addClass('active');
+				}
+			}
+		});
+	</script>
+</body>
+</html>

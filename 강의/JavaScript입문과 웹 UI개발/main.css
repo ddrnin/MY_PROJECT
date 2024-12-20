@@ -311,17 +311,51 @@ p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
+.array .row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 .array .card {
-  display: flex;
-  flex-direction: column;
-  margin: 50px;
+  margin: 40px;
 }
 .array .card .img {
   width: 150px;
   height: 100px;
   background: yellow;
 }
+.array .card .img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.array .card span {
+  display: block;
+}
+.array .btn_wrap {
+  padding: 50px;
+}
+.array .btn_wrap .input_wrap {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.array .btn_wrap .input_wrap input {
+  padding: 6px 12px 8px;
+  border-radius: 8px;
+  outline: none;
+}
 
 .select01 .size.hide {
   display: none;
+}
+
+.btn_blue {
+  padding: 6px 12px 8px;
+  outline: none;
+  border: none;
+  background: #5da1fa;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
 }/*# sourceMappingURL=main.css.map */
