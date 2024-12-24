@@ -8,6 +8,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
 </head>
 <body class="array">
+	<header>
+		<h1>dmmall</h1>
+		<a href="cart.html">장바구니ㄱㄱ</a>
+	</header>
 	<div class="container">
 		<div class="row"></div>
 	</div>
@@ -52,6 +56,7 @@
 						<span class="name">${element.title}</span>
 						<span class="price">가격 : ${element.price}</span>
 						<button class="btn_blue btn_buy">구매하기</button>
+						<span class="id">${element.id}</span>
 					</div>`
 				)
 			})
@@ -79,23 +84,39 @@
 				})
 			}
 		});
+		localStorage.removeItem('cart')
+		localStorage.removeItem('currentId')
 
-		// 구매하기 버튼 01
+		// 구매하기 버튼 v01
+		
+		// 초기 ID 값 설정: 로컬스토리지에서 가져오거나 기본값 1로 설정
+		let currentId = localStorage.getItem('currentId') ? parseInt(localStorage.getItem('currentId')) : 1;
 		$('.row').on('click', '.btn_buy', function() { // 동적 요소위해 이벤트 위임
 			// 이벤트 발생하는 버튼의 형제를 선택
 			var itemName = $(this).siblings('.name').html();
 			// 로컬스토리지에 cart값이 있으면 JSON.parse로 array/object로 만듦, 없으면 cart를 배열로 설정
 			var cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-			// 중복되지않는 상품명만 배열 cart에 추가
-			if (! cart.includes(itemName)) {
-				cart.push(itemName, itemName)
+
+			// 중복된 상품이 있는지 찾음 / 중복된 객체를 가져와서 수정하는 코드
+			var existingItem = cart.find(item => item.title === itemName);
+			if (existingItem) {
+				existingItem.num += 1;
+			} else {
+				cart.push({id: currentId,title: itemName, num: 1});
+				currentId += 1;
+				localStorage.setItem('currentId', currentId); // 업데이트된 ID를 로컬스토리지에 저장
 			}
+			// // 중복되지않는 상품명만 배열 cart에 추가 / 중복 여부만 판단하는 코드
+			// if (! cart.some(item => item.title === itemName)) {
+			// 	cart.push({title : itemName, num : a})
+			// }
 
 			// 문자로 바꿔서 로컬스토리지에 넣는다.
 			localStorage.setItem('cart', JSON.stringify(cart))
+			console.log(cart)
 		})
-		
-		// 구매하기 버튼 02
+
+		// 구매하기 버튼 v02
 		// $('.btn_buy').on('click', function(){
 		// 	var itemName = $(this).siblings('.name').html()
 		// 	if (localStorage.getItem('cart') != null ) {
@@ -244,10 +265,10 @@
 			return a * 4 // 조건식 : 자료를 어떻게 전부 변형할 것인지
 		});
 
-		console.log(array)
-		console.log(arrayFiler)
-		console.log(arrayMap)
-		console.log(array2)
+		// console.log(array)
+		// console.log(arrayFiler)
+		// console.log(arrayMap)
+		// console.log(array2)
 
 		
 	</script>

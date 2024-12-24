@@ -346,6 +346,9 @@ p{
 		span {
 			display: block;
 		}
+		.id {
+			display: none;
+		}
 	}
 	.btn_wrap {
 		padding: 50px;
@@ -382,3 +385,59 @@ p{
 	cursor: pointer;
 }
 
+.cart_page {
+	display: flex;
+	flex-direction: column;
+	padding: 30px;
+	h1 {
+		margin-bottom: 30px;
+	}
+	.prd_cart {
+		display: flex;
+		margin: 5px 0;
+		align-items: center;
+		p{
+			margin: 0 6px;
+		}
+		.img_wrap {
+			width: 100px;
+			height: 100px;
+			img{
+				width: 100%;
+				height: 100%;
+			}
+		}
+		button {
+			width: 30px;
+			height: 30px;
+			border: 1px solid black;
+			border-radius: 4px;
+			background: none;
+			cursor: pointer;
+			&~button{
+				margin-left: 8px;
+			}
+		}
+	}
+}
+.sticky {
+	.container {
+		display: flex;
+		position: relative;
+		height: 200vh;
+		.text_wrap {
+			width: 50%;
+			height: 100%;
+		}
+		.img_wrap {
+			width: 50%;
+			position: sticky;
+			top: 100px;
+			height: calc(50% - 100px);
+			img{
+				display: block;
+				width: 100%;
+			}
+		}
+	}
+}
