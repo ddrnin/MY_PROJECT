@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+	<div class="cart_page">
+		<h1>CART</h1>
+		<button></button>
+		<div class="cart">
+
+		</div>
+	</div>
+	<script>
+		$(document).ready(function(){
+			var cartData = JSON.parse(localStorage.getItem('cart')) || [];
+
+			function cart_data(cartData) {
+				$('.cart').empty()
+				cartData.forEach((element) => {
+					$('.cart').append(
+						`<div class="prd_cart" data-id="${element.id}"> 
+							<div class="img_wrap"><img src="./img/prd_0${element.id}.png" alt=""></div>
+							<p class="prd_tit">상품명 : ${element.title}</p>
+							<p class="prd_num">${element.num}개</p>
+							<button class="btn_plus">+</button>
+							<button class="btn_minus">-</button>
+						</div>`
+					)
+				})
+			}
+			cart_data(cartData)
+			console.log(cartData)
+
+			// 플러스 버튼
+			$('.cart').on('click', '.btn_plus', function(){
+				var prdId = $(this).closest('.prd_cart').data('id'); // 클릭한 상품의 ID
+				
+				var updatedCart = cartData.map(function(item){  // cartData불러와서 updatedCart에 저장
+					if(item.id == prdId) { // 기존 데이터 id와 클릭한 상품의 id 같으면 
+						item.num += 1; // num값 1올리고
+					}
+					return item; // 다시 저장
+				})
+				localStorage.setItem('cart', JSON.stringify(updatedCart)); // 로컬스토리지에도 다시 저장
+				cartData = updatedCart; // 코드의 명확성, 확장성 위해 데이터 동기화, (다름 함수에도 사용가능하게)
+				cart_data(cartData)
+			})
+
+			// 마이너스 버튼
+			$('.cart').on('click', '.btn_minus', function(){
+				var prdId = $(this).closest('.prd_cart').data('id'); // 클릭한 상품의 ID
+				
+				var updatedCart = cartData.map(function(item){  // cartData불러와서 updatedCart에 저장
+					if(item.id == prdId && item.num > 1) { // 기존 데이터 id와 클릭한 상품의 id 같으면
+						item.num -= 1; // num값 1올리고
+					} else {
+						// alert('해당 상품을 삭제하시겠습니까?')
+
+					}
+					return item; // 다시 저장
+				})
+				localStorage.setItem('cart', JSON.stringify(updatedCart)); // 로컬스토리지에도 다시 저장
+				cartData = updatedCart; // 코드의 명확성, 확장성 위해 데이터 동기화, (다름 함수에도 사용가능하게)
+				cart_data(cartData)
+			})
+		});
+		
+	</script>
+</body>
+</html>

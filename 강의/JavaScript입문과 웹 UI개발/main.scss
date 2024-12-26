@@ -320,14 +320,49 @@ p{
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 	}
-	.card{
-		display: flex;
-		flex-direction: column;
-		margin: 50px;
+	.row {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.card {
+		// @for $i from 1 through 5 {
+		// 	&:nth-child(#{$i}) {
+		// 		.img {
+		// 			background: mix(#ff0000, #0000ff, $i * 20%);
+		// 		}	
+		// 	}
+		// }
+		margin: 40px;
 		.img{
 			width: 150px;
 			height: 100px;
 			background: yellow;
+			img{
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		span {
+			display: block;
+		}
+		.id {
+			display: none;
+		}
+	}
+	.btn_wrap {
+		padding: 50px;
+		
+		.input_wrap {
+			margin-top: 10px;
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			input {
+				padding: 6px 12px 8px;
+				border-radius: 8px;
+				outline: none;
+			}
 		}
 	}
 }
@@ -340,3 +375,69 @@ p{
 	}
 }
 
+.btn_blue {
+	padding: 6px 12px 8px;
+	outline: none;
+	border: none;
+	background: #5da1fa;
+	border-radius: 8px;
+	color: #fff;
+	cursor: pointer;
+}
+
+.cart_page {
+	display: flex;
+	flex-direction: column;
+	padding: 30px;
+	h1 {
+		margin-bottom: 30px;
+	}
+	.prd_cart {
+		display: flex;
+		margin: 5px 0;
+		align-items: center;
+		p{
+			margin: 0 6px;
+		}
+		.img_wrap {
+			width: 100px;
+			height: 100px;
+			img{
+				width: 100%;
+				height: 100%;
+			}
+		}
+		button {
+			width: 30px;
+			height: 30px;
+			border: 1px solid black;
+			border-radius: 4px;
+			background: none;
+			cursor: pointer;
+			&~button{
+				margin-left: 8px;
+			}
+		}
+	}
+}
+.sticky {
+	.container {
+		display: flex;
+		position: relative;
+		height: 200vh;
+		.text_wrap {
+			width: 50%;
+			height: 100%;
+		}
+		.img_wrap {
+			width: 50%;
+			position: sticky;
+			top: 100px;
+			height: calc(50% - 100px);
+			img{
+				display: block;
+				width: 100%;
+			}
+		}
+	}
+}
