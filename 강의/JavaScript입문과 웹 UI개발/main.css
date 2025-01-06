@@ -117,7 +117,7 @@ p {
   list-style: none;
 }
 .carousel .slide {
-  width: 500px;
+  width: 100%;
   overflow: hidden;
 }
 .carousel .img_wrap {
@@ -126,10 +126,9 @@ p {
   position: relative;
   display: flex;
   align-items: flex-start;
-  transition: 0.5s;
 }
 .carousel .img_wrap li {
-  width: 500px;
+  width: 100%;
   height: 100%;
   flex-shrink: 0;
 }
@@ -160,8 +159,6 @@ p {
   margin-left: 10px;
 }
 .carousel .btn_wrap02 {
-  position: absolute;
-  width: 80%;
   display: flex;
   justify-content: space-between;
 }
@@ -399,14 +396,22 @@ p {
   margin-left: 8px;
 }
 
+.sticky .box {
+  width: 100%;
+  height: 100vh;
+}
 .sticky .container {
   display: flex;
   position: relative;
-  height: 200vh;
+  height: 100vh;
 }
 .sticky .container .text_wrap {
   width: 50%;
   height: 100%;
+}
+.sticky .container .text_wrap .text_box {
+  width: 100%;
+  height: 200vh;
 }
 .sticky .container .img_wrap {
   width: 50%;
@@ -417,4 +422,41 @@ p {
 .sticky .container .img_wrap img {
   display: block;
   width: 100%;
+}
+
+.apple_music .card_wrap {
+  height: 3000px;
+  margin-top: 800px;
+  margin-bottom: 1600px;
+}
+.apple_music .card_box {
+  position: sticky;
+  top: 400px;
+  margin-top: 200px;
+}
+.apple_music .card_box img {
+  display: block;
+  margin: auto;
+  max-width: 80%;
+}
+
+.final header {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background: #000;
+  color: #fff;
+}
+.final header ul {
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+}
+.final header ul li {
+  list-style-type: none;
+  color: #bbbbbb;
+}
+.final header ul li.active {
+  font-weight: bold;
+  color: #fff;
 }/*# sourceMappingURL=main.css.map */
