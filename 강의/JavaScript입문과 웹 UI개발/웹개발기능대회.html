@@ -35,6 +35,7 @@
 		let productsData = []; // 불러온 데이터 저장할 전역 변수
 		// card html 추가
 		function card(data) {
+			$('.card_wrap').empty();
 			data.forEach(element => {
 				$('.card_wrap').append(
 					`<li class="card">
@@ -54,8 +55,11 @@
 		});
 		// 검색 기능
 		$('#search').on('input', () => {
-			var prdSearch = $('#search').val()
-			
+			const prdSearch = $('#search').val()
+			const searchValue = productsData.filter(item => {
+				return item.title.includes(prdSearch)
+			});
+			card(searchValue)
 			// 인풋 밸류값이 제목, 업체명에 있으면 그 상품 보여줘
 		})
 	</script>
