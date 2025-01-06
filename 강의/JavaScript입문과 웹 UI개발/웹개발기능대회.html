@@ -8,13 +8,56 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body class="final">
-		<header>
-			<h1>집꾸미기</h1>
-			<ul>
-				<li class="active">Home</li>
-				<li>스토어</li>
-				<li>시공견적</li>
-			</ul>
-		</header>
+	<header>
+		<h1>집꾸미기</h1>
+		<ul>
+			<li class="active">Home</li>
+			<li>스토어</li>
+			<li>시공견적</li>
+		</ul>
+	</header>
+	<section class="input_section">
+		<input type="text" placeholder="검색어 입력" id="search">
+	</section>
+	<section class="prd_section">
+		<ul class="card_wrap">
+			
+		</ul>
+	</section>
+	<section class="cart_section">
+		<h3>장바구니</h3>
+		<div class="cart">
+			여기로 드래그
+		</div>
+	</section>
+
+	<script>
+		let productsData = []; // 불러온 데이터 저장할 전역 변수
+		// card html 추가
+		function card(data) {
+			data.forEach(element => {
+				$('.card_wrap').append(
+					`<li class="card">
+						<img src="./img/${element.photo}" alt="${element.title}">
+						<h3 class="title">${element.title}</h3>
+						<p class="brand">${element.brand}</p>
+						<p class="price">가격 : ${element.price}</p>
+						<button class="btn">담기</button>
+					</li>`
+				)
+			});
+		}
+		// 데이터 받아서 추가
+		$.get('./store.json').done((data) => {
+			productsData = data.products
+			card(productsData)
+		});
+		// 검색 기능
+		$('#search').on('input', () => {
+			var prdSearch = $('#search').val()
+			
+			// 인풋 밸류값이 제목, 업체명에 있으면 그 상품 보여줘
+		})
+	</script>
 </body>
 </html>

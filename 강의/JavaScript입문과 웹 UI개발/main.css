@@ -16,6 +16,15 @@
   padding: 0;
 }
 
+li {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
 p {
   margin: unset;
 }
@@ -440,10 +449,13 @@ p {
   max-width: 80%;
 }
 
+.final {
+  background: #eee;
+}
 .final header {
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 15px;
   background: #000;
   color: #fff;
 }
@@ -453,10 +465,57 @@ p {
   margin-left: 20px;
 }
 .final header ul li {
-  list-style-type: none;
   color: #bbbbbb;
 }
 .final header ul li.active {
   font-weight: bold;
   color: #fff;
+}
+.final section {
+  margin: 0 30px;
+}
+.final section ~ section {
+  margin-top: 20px;
+}
+.final section.input_section {
+  padding-top: 15px;
+}
+.final section.input_section #search {
+  padding: 12px;
+}
+.final .prd_section ul {
+  display: flex;
+}
+.final .prd_section ul .card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  background: #fff;
+}
+.final .prd_section ul .card ~ .card {
+  margin-left: 20px;
+}
+.final .prd_section ul .card .brand {
+  font-size: 13px;
+  color: #666;
+}
+.final .prd_section ul .card .btn {
+  padding: 4px 12px 6px;
+  color: #fff;
+  font-size: 16px;
+  background: #000;
+}
+.final .cart_section {
+  padding: 15px;
+  background: #ddd;
+}
+.final .cart_section .cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
+  color: #fff;
+  background: #000;
 }/*# sourceMappingURL=main.css.map */
