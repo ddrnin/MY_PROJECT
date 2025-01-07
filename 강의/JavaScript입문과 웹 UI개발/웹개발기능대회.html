@@ -20,48 +20,151 @@
 		<input type="text" placeholder="검색어 입력" id="search">
 	</section>
 	<section class="prd_section">
-		<ul class="card_wrap">
-			
-		</ul>
+		<ul class="card_wrap"></ul>
 	</section>
 	<section class="cart_section">
 		<h3>장바구니</h3>
-		<div class="cart">
-			여기로 드래그
-		</div>
+		<div class="cart">여기로 드래그</div>
 	</section>
 
 	<script>
-		let productsData = []; // 불러온 데이터 저장할 전역 변수
-		// card html 추가
-		function card(data) {
+		let prdData = [];
+		$.get('./store.json').done(data => {
+			prdData = data.products
+			prdCard(prdData)
+		})
+
+		function prdCard(data) {
 			$('.card_wrap').empty();
-			data.forEach(element => {
+			data.forEach(function(element){
 				$('.card_wrap').append(
 					`<li class="card">
 						<img src="./img/${element.photo}" alt="${element.title}">
-						<h3 class="title">${element.title}</h3>
-						<p class="brand">${element.brand}</p>
-						<p class="price">가격 : ${element.price}</p>
-						<button class="btn">담기</button>
+						<div class="text_wrap">
+							<h3 class="title">${element.title}</h3>
+							<p class="brand">${element.brand}</p>
+							<p class="price">가격 : ${element.price}</p>
+							<button class="btn">담기</button>
+						</div>
 					</li>`
-				)
+				);
 			});
-		}
-		// 데이터 받아서 추가
-		$.get('./store.json').done((data) => {
-			productsData = data.products
-			card(productsData)
-		});
-		// 검색 기능
+		};
+		
+		function prdCardEmpty() {
+			$('.card_wrap').empty();
+			$('.card_wrap').append(
+				`<li class="empty_msg">
+					<p>검색 결과가 없습니다.</p>
+				</li>`
+			);
+		};
+
 		$('#search').on('input', () => {
-			const prdSearch = $('#search').val()
-			const searchValue = productsData.filter(item => {
-				return item.title.includes(prdSearch)
+			const searchVal = $('#search').val().trim().toLowerCase(); // 검색창에 대문자 입력해도 소문자로 변환
+			const searchPrd = prdData.filter((item) => {
+				return item.title.toLowerCase().includes(searchVal);// 불러온 데이터 title을 소문자로 바꿔서 검색어에 포함되어있으면 searchPrd에 저장
 			});
-			card(searchValue)
-			// 인풋 밸류값이 제목, 업체명에 있으면 그 상품 보여줘
-		})
+			// 검색어가 있으면 카드생성, 없으면 메시지 노출
+			if (searchPrd.length == 0){
+				prdCardEmpty();
+			} else {
+				prdCard(searchPrd);
+			};
+			// 검색어 배경색
+			$('.card .text_wrap .title').each(function () {
+				const titleElement = $(this);
+				const text = titleElement.text().trim(); // 검색 결과 타이틀 소문자로 바꿔서 가져오기
+				const lowerCaseText = text.toLowerCase();
+
+				if (searchVal && lowerCaseText.includes(searchVal)) {
+					const highlightedText  = text.replace(
+						new RegExp(`${searchVal}`, 'gi'),
+						(match) => `<span class="highlight">${match}</span>`
+					);
+
+					titleElement.html(highlightedText); // jQuery 객체에 스타일 적용
+					console.log(lowerCaseText)
+				} else {
+					// titleElement.css('color', '');
+					// console.log(text)
+				}
+			});
+		});
+
+		// 검색어가 검색된 상품 타이틀에 있으면 스팬을 만들고 백그라운드 옐로우 해줘
+
+
+// const highlightedText  = titleText.replace(
+				// 	searchVal, '<span class="highlight"></span>'
+				// )
+				// titleText(highlightedText);
+
+				// toLowerCase은 왜 썼는지
+				// trim은 뭔지
+				// searchVal만 그냥 쓰면 어떤 뜻인지 - 빈문자열이랑 연관성
+
+
+
+// text.includes(searchVal) 
+// searchVal && text.toLowerCase().includes(searchVal.toLowerCase())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// let productsData = []; // 불러온 데이터 저장할 전역 변수
+		// // card html 추가
+		// function card(data) {
+		// 	$('.card_wrap').empty();
+		// 	data.forEach(element => {
+		// 		$('.card_wrap').append(
+		// 			`<li class="card">
+		// 				<img src="./img/${element.photo}" alt="${element.title}">
+		// 				<div class="text_wrap">
+		// 					<h3 class="title">${element.title}</h3>
+		// 					<p class="brand">${element.brand}</p>
+		// 					<p class="price">가격 : ${element.price}</p>
+		// 					<button class="btn">담기</button>
+		// 				</div>
+		// 			</li>`
+		// 		)
+		// 	});
+		// }
+		// // 데이터 받아서 추가
+		// $.get('./store.json').done((data) => {
+		// 	productsData = data.products
+		// 	card(productsData)
+		// });
+		// // 검색 기능
+		// $('#search').on('input', () => {
+		// 	const searchVal = $('#search').val()
+		// 	const searchResult = productsData.filter(item => {
+		// 		return item.title.includes(searchVal)
+		// 	});
+		// 	card(searchResult)
+		// 	// 인풋 밸류값이 제목, 업체명에 있으면 그 상품 보여줘
+		// })
 	</script>
 </body>
 </html>

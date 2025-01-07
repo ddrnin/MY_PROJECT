@@ -484,27 +484,42 @@ p {
   padding: 12px;
 }
 .final .prd_section ul {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 .final .prd_section ul .card {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 10px;
   padding: 15px;
   background: #fff;
 }
-.final .prd_section ul .card ~ .card {
-  margin-left: 20px;
+.final .prd_section ul .card .text_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
 }
-.final .prd_section ul .card .brand {
+.final .prd_section ul .card .text_wrap .title .highlight {
+  background: yellow;
+  font-weight: bold;
+}
+.final .prd_section ul .card .text_wrap .brand {
   font-size: 13px;
   color: #666;
 }
-.final .prd_section ul .card .btn {
+.final .prd_section ul .card .text_wrap .btn {
+  width: 100%;
   padding: 4px 12px 6px;
   color: #fff;
   font-size: 16px;
   background: #000;
+  cursor: pointer;
+}
+.final .prd_section ul .empty_msg {
+  padding: 20px 0;
 }
 .final .cart_section {
   padding: 15px;
