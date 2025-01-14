@@ -1,0 +1,15 @@
+.App {
+	text-align: center;
+}
+.black_nav {
+	background: black;
+	width: 100%;
+	display: flex;
+	color: white;
+	padding: 20px;
+}
+.list {
+	padding-left: 20px;
+	text-align: left;
+	border-bottom: 1px solid gray;
+}
