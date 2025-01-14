@@ -55,6 +55,13 @@
 		"brand": "대한민국",
 		"photo": "pr4.jpg",
 		"price": 50000
+	},
+	{
+		"id": 8,
+		"title": "풍기풍기",
+		"brand": "대한민국",
+		"photo": "pr1.jpg",
+		"price": 45000
 	}
 ]
 }

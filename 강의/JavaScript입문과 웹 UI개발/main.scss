@@ -558,12 +558,30 @@ p{
 		background: #ddd;
 		.cart {
 			display: flex;
-			align-items: center;
 			justify-content: center;
+			// grid-template-columns: repeat(4, 1fr);
 			width: 100%;
-			height: 300px;
+			min-height: 200px;
 			color: #fff;
 			background: #000;
+			overflow-x: scroll;
+			li {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding: 10px;
+				margin: 5px;
+				text-align: center;
+				background: #fff;
+				.text_wrap {
+					color: #000;
+					.count{
+						border: 1px solid #000;
+						border-radius: 3px;
+						margin: 0 20px;
+					}
+				}
+			}
 		}
 	}
 }
