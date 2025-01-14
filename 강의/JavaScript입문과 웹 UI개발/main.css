@@ -16,6 +16,15 @@
   padding: 0;
 }
 
+li {
+  list-style: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
 p {
   margin: unset;
 }
@@ -117,7 +126,7 @@ p {
   list-style: none;
 }
 .carousel .slide {
-  width: 500px;
+  width: 100%;
   overflow: hidden;
 }
 .carousel .img_wrap {
@@ -126,10 +135,9 @@ p {
   position: relative;
   display: flex;
   align-items: flex-start;
-  transition: 0.5s;
 }
 .carousel .img_wrap li {
-  width: 500px;
+  width: 100%;
   height: 100%;
   flex-shrink: 0;
 }
@@ -160,8 +168,6 @@ p {
   margin-left: 10px;
 }
 .carousel .btn_wrap02 {
-  position: absolute;
-  width: 80%;
   display: flex;
   justify-content: space-between;
 }
@@ -399,14 +405,22 @@ p {
   margin-left: 8px;
 }
 
+.sticky .box {
+  width: 100%;
+  height: 100vh;
+}
 .sticky .container {
   display: flex;
   position: relative;
-  height: 200vh;
+  height: 100vh;
 }
 .sticky .container .text_wrap {
   width: 50%;
   height: 100%;
+}
+.sticky .container .text_wrap .text_box {
+  width: 100%;
+  height: 200vh;
 }
 .sticky .container .img_wrap {
   width: 50%;
@@ -417,4 +431,123 @@ p {
 .sticky .container .img_wrap img {
   display: block;
   width: 100%;
+}
+
+.apple_music .card_wrap {
+  height: 3000px;
+  margin-top: 800px;
+  margin-bottom: 1600px;
+}
+.apple_music .card_box {
+  position: sticky;
+  top: 400px;
+  margin-top: 200px;
+}
+.apple_music .card_box img {
+  display: block;
+  margin: auto;
+  max-width: 80%;
+}
+
+.final {
+  background: #eee;
+}
+.final header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #000;
+  color: #fff;
+}
+.final header ul {
+  display: flex;
+  gap: 10px;
+  margin-left: 20px;
+}
+.final header ul li {
+  color: #bbbbbb;
+}
+.final header ul li.active {
+  font-weight: bold;
+  color: #fff;
+}
+.final section {
+  margin: 0 30px;
+}
+.final section ~ section {
+  margin-top: 20px;
+}
+.final section.input_section {
+  padding-top: 15px;
+}
+.final section.input_section #search {
+  padding: 12px;
+}
+.final .prd_section ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.final .prd_section ul .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px;
+  background: #fff;
+}
+.final .prd_section ul .card .text_wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+.final .prd_section ul .card .text_wrap .title .highlight {
+  background: yellow;
+  font-weight: bold;
+}
+.final .prd_section ul .card .text_wrap .brand {
+  font-size: 13px;
+  color: #666;
+}
+.final .prd_section ul .card .text_wrap .btn {
+  width: 100%;
+  padding: 4px 12px 6px;
+  color: #fff;
+  font-size: 16px;
+  background: #000;
+  cursor: pointer;
+}
+.final .prd_section ul .empty_msg {
+  padding: 20px 0;
+}
+.final .cart_section {
+  padding: 15px;
+  background: #ddd;
+}
+.final .cart_section .cart {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 200px;
+  color: #fff;
+  background: #000;
+  overflow-x: scroll;
+}
+.final .cart_section .cart li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  background: #fff;
+}
+.final .cart_section .cart li .text_wrap {
+  color: #000;
+}
+.final .cart_section .cart li .text_wrap .count {
+  border: 1px solid #000;
+  border-radius: 3px;
+  margin: 0 20px;
 }/*# sourceMappingURL=main.css.map */

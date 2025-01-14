@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <link rel="stylesheet" href="lib/setting.css"> 
-    <link rel="stylesheet" href="style/main.css">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	@@include('../_partials/_head.html', {
+		"head_title" : "swiper_01"
+	})
 </head>
 <body>
+	@@include('../_partials/_header.html', {
+		"header_type": "normal",
+		"header_title": "swiper_stepper"
+	})
 	<div class="animaition">
 		<svg class="moving">
 			<rect class="ani01"></rect>

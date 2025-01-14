@@ -10,7 +10,7 @@
 <body>
 	<main class="carousel">
 		<div class="slide">
-			<ul class="img_wrap">
+			<ul class="img_wrap" draggable="false">
 				<li class="img img01"></li>
 				<li class="img img02"></li>
 				<li class="img img03"></li>
@@ -56,15 +56,80 @@
 	
 		var currentPicture = 0;
 		$('.btn_next').on('click', function(){
-			if(currentPicture < 3){
-				currentPicture += 1;
-				$('.img_wrap').css('transform', `translateX(-${currentPicture}00%)`);
-			}
+			currentPicture += 1;
+			$('.img_wrap').css('transform', `translateX(-${currentPicture}00%)`);
+
+			// if(currentPicture < 3){
+			// 	currentPicture += 1;
+			// 	$('.img_wrap').css('transform', `translateX(-${currentPicture}00%)`);
+			// }
 		});
 		$('.btn_prev').on('click', function(){
 			currentPicture -= 1;
 			$('.img_wrap').css('transform', `translateX(-${currentPicture}00%)`);
 		});
+
+		// 20250106
+		// 1.내가 드래그한 만큼 이미지 박스 드래그  
+		// 2.이미지를 드래그 해서 30%이상 넘어갈 경우 화면이 이동
+
+		var 시작좌표 = 0
+		var 눌렀냐 = false;
+		// touchstart / touchmove / touchend 모바일에서 mouse이벤트 대신 넣을것
+		$('.img_wrap .img').eq(0).on('mousedown', function(e){
+			시작좌표 = e.clientX;
+			// console.log(currentX)
+			눌렀냐 = true;
+		})
+		$('.img_wrap .img').eq(0).on('mousemove', function(e){
+			// 시작좌표 - e.clientX 
+			if (눌렀냐 == true) {
+				$('.img_wrap').css('transform', `translateX(${e.clientX - 시작좌표}px)`);
+				console.log(e.clientX - 시작좌표)
+			}
+		})
+		$('.img_wrap .img').eq(0).on('mouseup', function(e){
+			눌렀냐 = false;
+			if (e.clientX - 시작좌표 <= -100) {
+				$('.img_wrap')
+				.css('transition', 'all 0.5s')
+				.css('transform', `translateX(-100%)`);
+			} else {
+				$('.img_wrap')
+				.css('transition', 'all 0.5s')
+				.css('transform', `translateX(0%)`);
+			}
+			setTimeout(function(){
+				$('.img_wrap').css('transition', 'none')
+			}, 500)
+		})
+		// 모바일
+		$('.img_wrap .img').eq(0).on('touchstart', function(e){
+			시작좌표 = e.touches[0].clientX;
+			// console.log(currentX)
+			눌렀냐 = true;
+		})
+		$('.img_wrap .img').eq(0).on('touchmove', function(e){
+			// 시작좌표 - e.clientX 
+			if (눌렀냐 == true) {
+				$('.img_wrap').css('transform', `translateX(${e.touches[0].clientX - 시작좌표}px)`);
+			}
+		})
+		$('.img_wrap .img').eq(0).on('touchend', function(e){
+			눌렀냐 = false;
+			if (e.changedTouches[0].clientX - 시작좌표 <= -100) {
+				$('.img_wrap')
+				.css('transition', 'all 0.5s')
+				.css('transform', `translateX(-100%)`);
+			} else {
+				$('.img_wrap')
+				.css('transition', 'all 0.5s')
+				.css('transform', `translateX(0%)`);
+			}
+			setTimeout(function(){
+				$('.img_wrap').css('transition', 'none')
+			}, 500)
+		})
 	</script>
 </body>
 </html>

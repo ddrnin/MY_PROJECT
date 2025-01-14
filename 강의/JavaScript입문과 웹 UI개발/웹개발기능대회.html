@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body class="final">
+	<header>
+		<h1>집꾸미기</h1>
+		<ul>
+			<li class="active">Home</li>
+			<li>스토어</li>
+			<li>시공견적</li>
+		</ul>
+	</header>
+	<section class="input_section">
+		<input type="text" placeholder="검색어 입력" id="search">
+	</section>
+	<section class="prd_section">
+		<ul class="card_wrap"></ul>
+	</section>
+	<section class="cart_section">
+		<h3>장바구니</h3>
+		<ul id="div1" class="cart" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+		<p class="amount">총액 : <span></span></p>
+	</section>
+
+	<script>
+		let prdData = [];
+		$.get('./store.json').done(data => {
+			prdData = data.products
+			prdCard(prdData)
+		})
+
+		function prdCard(data) {
+			$('.card_wrap').empty();
+			data.forEach(function(element){
+				$('.card_wrap').append(
+					`<li id="${element.id + 1}" class="card" draggable="true" ondragstart="drag(event)">
+						<img src="./img/${element.photo}" alt="${element.title}">
+						<div class="text_wrap">
+							<h3 class="title">${element.title}</h3>
+							<p class="brand">${element.brand}</p>
+							<p class="price">가격 : ${element.price}</p>
+							<button class="btn" onclick="addToCart('${element.id + 1}')">담기</button>
+						</div>
+					</li>`
+				);
+			});
+		};
+		
+		function prdCardEmpty() {
+			$('.card_wrap').empty();
+			$('.card_wrap').append(
+				`<li class="empty_msg">
+					<p>검색 결과가 없습니다.</p>
+				</li>`
+			);
+		};
+
+		$('#search').on('input', () => {
+			const searchVal = $('#search').val().trim().toLowerCase(); // 검색창에 대문자 입력해도 소문자로 변환
+			const searchPrd = prdData.filter((item) => {
+				return item.title.toLowerCase().includes(searchVal);// 불러온 데이터 title을 소문자로 바꿔서 검색어에 포함되어있으면 searchPrd에 저장
+			});
+			// 검색어가 있으면 카드생성, 없으면 메시지 노출
+			if (searchPrd.length == 0){
+				prdCardEmpty();
+			} else {
+				prdCard(searchPrd);
+			};
+			// 검색어 배경색
+			$('.card .text_wrap .title').each(function () {
+				const titleElement = $(this);
+				const text = titleElement.text().trim(); // 검색 결과 타이틀
+				const lowerCaseText = text.toLowerCase(); // 검색 결과 타이틀 소문자로 변환
+
+				if (searchVal && lowerCaseText.includes(searchVal)) { // 소문자 변환한 검색 결과에 검색어 포함 확인
+					const highlightedText = text.replace( // 소문자 변환 전 원본문자열에서 패턴을 찾아 새로운 값으로 대체한다.
+						new RegExp(`${searchVal}`, 'gi'),
+						function(match) {
+							return `<span class="highlight">${match}</span>`
+						}
+					);
+					titleElement.html(highlightedText); // jQuery 객체에 스타일 적용
+					console.log(lowerCaseText)
+				} else {
+					// titleElement.css('color', '');
+					// console.log(text)
+				}
+			});
+		});
+
+		// 드래그 카트
+		function allowDrop(e) {
+			e.preventDefault();
+		}
+		function drag(e) {
+			const draggedElement = e.target.closest("li"); // 드래그 시작한 요소 중 가장 가까운 li 요소 찾기
+			if (draggedElement && draggedElement.id) {
+				e.dataTransfer.setData("text", draggedElement.id);
+				console.log("Dragging ID:", draggedElement.id);
+			} else {
+				console.error("Dragged element has no ID or is not a valid li.");
+			}
+		}
+
+		// 총액 계산
+		function updateTotalAmount() {
+			const cart = document.getElementById("div1");
+			const totalElement = document.querySelector(".amount span");
+			let total = 0;
+
+			// 모든 카트 아이템의 가격을 합산
+			Array.from(cart.children).forEach((item) => {
+				const priceElement = item.querySelector(".price");
+				const countElement = item.querySelector(".count");
+				if (priceElement && countElement) {
+					const price = parseFloat(priceElement.innerText.replace(/[^0-9]/g, ""));
+					const count = parseInt(countElement.innerText, 10) || 1;
+					total += price * count;
+				}
+			});
+
+			// 총액 업데이트
+			totalElement.innerText = `${total.toLocaleString()}원`;
+		}
+
+		function addToCart(itemId) {
+			const draggedElement = document.getElementById(itemId);
+			const dropTarget = document.getElementById("div1");
+
+			if (draggedElement && dropTarget) {
+				// 장바구니에서 기존 상품 찾기
+				const existingItem = Array.from(dropTarget.children).find((child) => {
+					return child.dataset.itemId === itemId; // data-item-id로 중복 확인
+				});
+
+				if (existingItem) {
+					// 이미 존재하는 상품의 카운트를 증가
+					const countElement = existingItem.querySelector(".count");
+					if (countElement) {
+						const currentCount = parseInt(countElement.innerText, 10) || 0;
+						countElement.innerText = currentCount + 1;
+					}
+				} else {
+					// 복사본 생성
+					const clonedElement = draggedElement.cloneNode(true);
+					clonedElement.id = `cart-${itemId}`; // 고유 ID 설정
+					clonedElement.dataset.itemId = itemId; // 중복 확인용 데이터 속성 추가
+					
+					// 카운트 추가
+					const countHTML = `<p class="count">1</p>`;
+					const textWrap = clonedElement.querySelector(".text_wrap");
+					textWrap.insertAdjacentHTML("beforeend", countHTML); // Count 추가
+
+					// 가격 수정
+					const priceElement = clonedElement.querySelector(".price");
+					if (priceElement) {
+						priceElement.innerHTML = `${draggedElement.querySelector(".price").innerText.split(":")[1]}`; // 가격만 추출
+					}
+
+					// 담기 버튼 제거
+					const btn = clonedElement.querySelector(".btn");
+					if (btn) {
+						btn.remove(); // 버튼 제거
+					}
+
+					// 드래그 가능 속성 제거
+					clonedElement.removeAttribute("draggable");
+					clonedElement.removeAttribute("ondragstart");
+					
+					dropTarget.appendChild(clonedElement); // 장바구니에 추가
+				}
+
+				// 총액 업데이트
+				updateTotalAmount();
+			} else {
+				console.error("Invalid element or drop target.");
+			}
+		}
+
+
+		function drop(e) {
+			e.preventDefault();
+			const data = e.dataTransfer.getData("text");
+			const draggedElement = document.getElementById(data);
+
+			// 항상 drop 이벤트가 div1에서 작동하도록
+			const dropTarget = e.target.closest("#div1");
+
+			if (draggedElement && dropTarget) {
+				// 장바구니에서 기존 상품 찾기
+				const existingItem = Array.from(dropTarget.children).find((child) => {
+					return child.dataset.itemId === data; // data-item-id로 중복 확인
+				});
+
+				if (existingItem) {
+					// 이미 존재하는 상품의 카운트를 증가
+					const countElement = existingItem.querySelector(".count");
+					if (countElement) {
+						const currentCount = parseInt(countElement.innerText, 10) || 0;
+						countElement.innerText = currentCount + 1;
+					}
+				} else {
+
+					// 복사본 생성
+					const clonedElement = draggedElement.cloneNode(true);
+					clonedElement.id = `cart-${data}`; // 고유 ID 설정
+					clonedElement.dataset.itemId = data; // 중복 확인용 데이터 속성 추가
+
+					// 카운트 추가
+					const countHTML = `<p class="count">1</p>`;
+					const textWrap = clonedElement.querySelector(".text_wrap");
+					textWrap.insertAdjacentHTML("beforeend", countHTML); // Count 추가
+
+					// 가격 수정
+					const priceElement = clonedElement.querySelector(".price");
+					if (priceElement) {
+						priceElement.innerHTML = `${draggedElement.querySelector(".price").innerText.split(":")[1]}`; // 가격만 추출
+					}
+
+					// 담기 버튼 제거
+					const btn = clonedElement.querySelector(".btn");
+					if (btn) {
+						btn.remove(); // 버튼 제거
+					}
+					// 드래그 가능 속성 제거
+					clonedElement.removeAttribute("draggable");
+					clonedElement.removeAttribute("ondragstart");
+
+					dropTarget.appendChild(clonedElement); // 장바구니에 추가
+				}
+
+				updateTotalAmount();
+			} else {
+				console.error("Invalid element or drop target.");
+			}
+		}
+	</script>
+</body>
+</html>
