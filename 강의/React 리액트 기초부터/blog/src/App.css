@@ -1,6 +1,7 @@
 .App {
 	text-align: center;
 }
+
 .black_nav {
 	background: black;
 	width: 100%;
@@ -12,4 +13,15 @@
 	padding-left: 20px;
 	text-align: left;
 	border-bottom: 1px solid gray;
+}
+.modal {
+	
+	width:40%;
+	margin: 20px auto 0;
+	background: #eee;
+	div {
+		width:100%; 
+	}
+	div~div {
+	}
 }
